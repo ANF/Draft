@@ -10,4 +10,4 @@ However, if you want to released version. You can run [this](https://github.com/
 ## Further help
 You can [create an issue](https://github.com/ANF-Studios/ListManager/issues) or just join the support server.
 
-[![Discord](https://img.shields.io/discord/243005537342586880?color=7289DA&label=Discord%20Server&style=for-the-badge)](https://discord.gg/fKWpK7A)
+[![Discord](https://img.shields.io/discord/732064655396044840?color=7289DA&label=Discord%20Server&style=for-the-badge)](https://discord.gg/fKWpK7A)
