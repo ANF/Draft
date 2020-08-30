@@ -26,7 +26,7 @@ namespace ListManager.Core
             catch (Exception ex)
             {
                 Console.Beep();
-                Console.WriteLine("FATAL ERROR! File not found!");
+                Console.WriteLine("FATAL ERROR!");
                 Console.WriteLine("Please give these details to the publisher:\n" + ex);
             }
             GC.Collect();

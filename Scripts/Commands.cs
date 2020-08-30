@@ -24,6 +24,9 @@ namespace ListManager
 create/add
 Creates a list with specifed name and items
 
+delete/remove
+Deletes an existing list.
+
 view
 Shows a list of saved lists
 
@@ -50,6 +53,13 @@ Note: All commands must start the prefix '-'");
                     CreationInitialize();
                     break;
 
+                case "-delete":
+                case "-remove":
+                    Console.WriteLine("What is the name of the list that you want to delete?");
+                    string listDel = Console.ReadLine();
+                    DeletionInitialize(listDel);
+                    break;
+
                 case "-view":
                     ViewList.ListNames();
                     break;
@@ -73,14 +83,14 @@ Note: All commands must start the prefix '-'");
             string[] GetFiles = Directory.GetFiles(@"C:\Users\Public\Documents\ListManager", "*.list");
             List<string> Possible = new List<string>();
 
-            foreach(string ListToSep in GetFiles)
+            foreach (string ListToSep in GetFiles)
             {
                 string GetFilesFinal = Path.GetFileNameWithoutExtension(ListToSep);
                 Possible.Add(GetFilesFinal);
                 //Console.WriteLine(GetFilesFinal);
             }
-            
-            if(Possible.Contains(choice))
+
+            if (Possible.Contains(choice))
             {
                 Console.WriteLine("Opening file!");
                 ViewList.ListView(choice);
@@ -111,6 +121,31 @@ Note: All commands must start the prefix '-'");
             }
             GC.Collect();
             ListCreator.ListCreation(listName);
+        }
+
+        private static void DeletionInitialize(string choice)
+        {
+            string[] GetFiles = Directory.GetFiles(@"C:\Users\Public\Documents\ListManager", "*.list");
+            List<string> Possible = new List<string>();
+
+            foreach (string ListToSep in GetFiles)
+            {
+                string GetFilesFinal = Path.GetFileNameWithoutExtension(ListToSep);
+                Possible.Add(GetFilesFinal);
+                //Console.WriteLine(GetFilesFinal);
+            }
+
+            if (Possible.Contains(choice))
+            {
+                Console.WriteLine("Deleting File..");
+                DeleteManager.DeleteList(choice);
+            }
+
+            else
+            {
+                Console.WriteLine("No such file found! Run the command again!");
+                Commands();
+            }
         }
     }
 }
