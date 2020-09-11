@@ -1,13 +1,15 @@
 using System;
 using System.IO;
-using System.Linq;
-using ListManager.Core;
+using ListManager.IO;
 using System.Collections.Generic;
 
 namespace ListManager
 {
     public class Cmds
     {
+        ///<summary>
+        /// Main method for commands
+        ///</summary>
         public static void Commands()
         {
             string Command = Console.ReadLine();
@@ -43,7 +45,7 @@ Note: All commands must start the prefix '-'");
                 case "-v":
                 case "-version":
                     Console.Clear();
-                    Console.WriteLine("This is List Manager running v0.1aot");
+                    Console.WriteLine("This is List Manager running v0.1a");
                     Commands();
                     break;
 
@@ -61,7 +63,7 @@ Note: All commands must start the prefix '-'");
                     break;
 
                 case "-view":
-                    ViewList.ListNames();
+                    IOFunctions.ListNames();
                     break;
 
                 case "-list":
@@ -78,6 +80,9 @@ Note: All commands must start the prefix '-'");
             }
         }
 
+        ///<summary>
+        /// Checks if file to open exists
+        ///</summary>
         private static void ListViewInitialize(string choice)
         {
             string[] GetFiles = Directory.GetFiles(@"C:\Users\Public\Documents\ListManager", "*.list");
@@ -93,7 +98,7 @@ Note: All commands must start the prefix '-'");
             if (Possible.Contains(choice))
             {
                 Console.WriteLine("Opening file!");
-                ViewList.ListView(choice);
+                IOFunctions.ListView(choice);
             }
 
             else
@@ -103,6 +108,9 @@ Note: All commands must start the prefix '-'");
             }
         }
 
+        ///<summary>
+        /// Gets the required data to create a list.
+        ///</summary>
         private static void CreationInitialize()
         {
             Console.WriteLine("What should be the name of the list?");
@@ -120,9 +128,12 @@ Note: All commands must start the prefix '-'");
                 }
             }
             GC.Collect();
-            ListCreator.ListCreation(listName);
+            IOFunctions.ListCreation(listName);
         }
 
+        ///<summary>
+        /// Checks if file exists
+        ///</summary>
         private static void DeletionInitialize(string choice)
         {
             string[] GetFiles = Directory.GetFiles(@"C:\Users\Public\Documents\ListManager", "*.list");
@@ -138,7 +149,7 @@ Note: All commands must start the prefix '-'");
             if (Possible.Contains(choice))
             {
                 Console.WriteLine("Deleting File..");
-                DeleteManager.DeleteList(choice);
+                IOFunctions.DeleteList(choice);
             }
 
             else
