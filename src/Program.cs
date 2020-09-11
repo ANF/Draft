@@ -6,6 +6,9 @@ namespace ListManager
 {
     class Program
     {
+        ///<summary>
+        /// Main method to run this application
+        ///</summary>
         static void Main()
         {
             Initialize();
@@ -13,15 +16,27 @@ namespace ListManager
 
             //Beep if it reaches here for some reason
             Console.Beep();
+            Console.Clear();
+            Console.Write("Press any key to close..");
             Console.ReadKey();
         }
 
+        ///<summary>
+        /// Goes to the command module and make sures that it stays there
+        ///</summary>
         static void MoveToCmds()
         {
             Cmds.Commands();
-            System.Threading.Tasks.Task.Delay(-1).Wait();
+            //Beep if it reaches here for some reason
+            Console.Beep();
+            Console.Clear();
+            Console.Write("Press any key to close..");
+            Console.ReadKey();
         }
 
+        ///<summary>
+        /// Starts the application
+        ///</summary>
         static void Initialize()
         {
             if (Process.GetProcessesByName(Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Length > 1)
@@ -34,12 +49,6 @@ namespace ListManager
             else
             {
                 Console.Title = "List Manager";
-                var rnd = new Random()
-                .Next(250, 1250);
-
-                Console.Write("Initializing..");
-                System.Threading.Thread.Sleep(rnd);
-                Console.Clear();
                 Console.WriteLine("Welcome to the list manager");
                 Console.WriteLine("To view a list of commands, use \"-help\"");
                 GC.Collect();
