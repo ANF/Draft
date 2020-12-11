@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"editor.codeLens": true,
+		"diffEditor.codeLens": true,
+		"npm-scripts.showStartNotification": false,
+	}
+}
