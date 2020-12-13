@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu, MenuItem } from 'electron';
 import * as path from 'path';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -16,6 +16,10 @@ const createWindow = (): void => {
       nodeIntegration: true,
     }
   });
+
+  const appMenu = new Menu();
+
+  Menu.setApplicationMenu(appMenu);
 
   // Show the window
   mainWindow.show();
