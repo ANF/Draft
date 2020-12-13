@@ -1,12 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
-  background-color: #242424;
+  margin: 0;
+  padding: 0;
+  background-color: #FFFFFF; 
 }
 
-h1, p {
-  text-align: center;
-  color: #ffffff;
+html, body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/*
+The actual text area where the user inputs text.
+Future plans are to add support for dark mode.
+A nice color for dark mode is: #242424
+textarea:focus {
+  background: #242424;
+}
+Sample code for changing the color.
+*/
+textarea {
+  font-family: 'Roboto';
+  height: 100vh;
+  width: 100vw;
+  font-size: 20px; /*Font size for the input text*/
+  outline: none; /*The entire outline code is to disable a yellow color that appears when clicking on it*/
+  outline-color: transparent;
+  outline-style: none;
+  color: black; /*This is the text color*/
+  resize: none; /*This is to remove the resize option found on the bottom-right corner*/
+  border: none; /*This removes the black outline from the border*/
 }
