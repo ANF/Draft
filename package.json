@@ -1,6 +1,6 @@
 {
   "name": "anfpad",
-  "productName": "anfpad",
+  "productName": "ANFPad",
   "version": "0.3.0",
   "description": "A simple application that manages all your notes.",
   "main": "dist/index.js",
@@ -15,6 +15,7 @@
   "author": {
     "name": "ANF-Studios"
   },
+  "icon": "/src/images/favicon.ico",
   "files": [
     "**/*",
     "dist/**/*"
