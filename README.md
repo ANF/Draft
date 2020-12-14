@@ -13,7 +13,7 @@
 </p>
 
 <h2 align="center">Using it</h2>
-<p>You can grab the latest release of [ANFPad](/) at the <a href="https://github.com/ANF-Studios/ANFPad/releases/latest">releases</a> section and run the installer like any other Electron application.</p>
+<p>You can grab the latest release of <a href="/">ANFPad</a> at the <a href="https://github.com/ANF-Studios/ANFPad/releases/latest">releases</a> section and run the installer like any other Electron application.</p>
 
 ### I'm living on the Edge, give me the latest features
 You can simply grab a pre-release with the latest features or works that are under development. Keep in mind that things may break or appear unexpectedly.
