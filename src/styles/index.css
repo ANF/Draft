@@ -16,7 +16,7 @@ html, body {
 The actual text area where the user inputs text.
 Future plans are to add support for dark mode.
 A nice color for dark mode is: #242424
-textarea:focus {
+textarea {
   background: #242424;
 }
 Sample code for changing the color.
