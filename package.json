@@ -4,12 +4,14 @@
   "version": "0.3.0",
   "description": "A simple application that manages all your notes.",
   "main": "dist/index.js",
+  "private": "true",
   "scripts": {
     "start": "tsc && electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "eslint --ext .ts ."
+    "publish": "electron-forge publish --arch=ia32 --platform=win32",
+    "lint": "eslint --ext .ts .",
+    "packager pack": "electron-packager . --platform=win32 --arch=ia32 ANFPad --icon ./src/images/favicon.ico"
   },
   "publisher": "ANF-Studios",
   "author": {
@@ -22,31 +24,7 @@
   ],
   "license": "MIT",
   "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "anfpad"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
+    "forge": "forge.config.js"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",
@@ -57,6 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
     "electron": "11.0.4",
+    "electron-winstaller": "^4.0.1",
     "eslint": "^7.15.0",
     "eslint-plugin-import": "^2.22.1",
     "typescript": "^4.1.2"
