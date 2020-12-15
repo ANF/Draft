@@ -5,42 +5,14 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ANFPad</title>
   <link rel="stylesheet" href="../styles/index.css">
 </head>
 
 <body>
-  <!--<script src="../components/iofunctions.js"></script>-->
-  <script>
-    // This breaks and is to be done.
-    const dialog = require('electron').dialog
-    const fs = require('fs')
-    const path = require('path')
-    const documents = require('os').homedir()
-
-    function ctrlSPressed() {
-      throw "Not Implemented";
-      if (event.ctrlKey && event.key == "s") {
-        console.log(document.getElementById("pad").value)
-        dialog.showSaveDialog().then(file => {
-          // Stating whether dialog operation was cancelled or not.
-          if (!file.canceled) {
-            console.log(file.filePath.toString());
-
-            // Creating and Writing to the sample.txt file 
-            fs.writeFile(file.filePath.toString(),
-              'This is a Sample File', function (err) {
-                if (err) throw err;
-                console.log('Saved!');
-              });
-          }
-        }).catch(err => {
-          console.log(err)
-        });
-      }
-    }
-  </script>
-  <textarea id="pad" onkeydown="ctrlSPressed(event)"></textarea>
+  <script src="../components/iofunctions.js"></script>
+  <textarea id="pad" onkeydown="checkForCommands(event)"></textarea>
 </body>
 
 </html>
