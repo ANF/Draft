@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, MenuItem } from 'electron';
+import { app, BrowserWindow, Menu, MenuItem, webContents } from 'electron';
 import * as path from 'path';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -9,26 +9,56 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 const createWindow = (): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    height: 600,
+    height: 500,
     width: 800,
     icon: './src/images/favicon.ico',
     webPreferences: {
       nodeIntegration: true,
+      enableRemoteModule: true,
+      textAreasAreResizable: false,
+      disableDialogs: false,
+      //devTools: false,
     }
   });
 
-  const appMenu = new Menu();
+  // Create a new menu and assign it (result: no menu),
+  //const appMenu = new Menu();
+  //Menu.setApplicationMenu(appMenu);
+  mainWindow.webContents.on('context-menu', (event, params) => {
+    const rightClick = new Menu();
+    for (const suggestion of params.dictionarySuggestions) {
+      rightClick.append(new MenuItem({
+        label: suggestion,
+        click: () => {
+          mainWindow.webContents.replaceMisspelling(suggestion)
+          rightClick.closePopup();
+        }
+      }))
+    }
 
-  Menu.setApplicationMenu(appMenu);
+    // Allow users to add the misspelled word to the dictionary
+    if (params.misspelledWord) {
+      rightClick.append(
+        new MenuItem({
+          label: 'Add to Dictionary',
+          click: () => {
+            mainWindow.webContents.session.addWordToSpellCheckerDictionary(params.misspelledWord);
+            rightClick.closePopup();
+          }
+        })
+      )
+    } else { return; }
+    rightClick.popup();
+  });
 
-  // Show the window
-  mainWindow.show();
-
-  // and load the index.html of the app.
+  // load the index.html of the app
   mainWindow.loadFile('./src/pages/index.html');
 
+  // and finally show the window.
+  mainWindow.show();
+
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
