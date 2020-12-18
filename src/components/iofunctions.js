@@ -1,98 +1,69 @@
-//var dialog = require('electron').remote
-const dialog = require('electron').dialog
-const fs = require('fs')
-const path = require('path')
+const { dialog, app } = require('electron').remote;
+const fs = require('fs');
 
-function checkForCommands() {
+function checkForCommands(event) {
     if (event.ctrlKey && event.key == "s") {
-        fs.writeFile("./Documents.pad", document.getElementById("pad").value, function (err) {
-            if (err) {
-                alert(err);
-                throw err;
-            }
-        });
-    }
-
-    if (event.ctrlKey && event.key == "o") {
-        fs.readFile("./Documents.pad", function (err, data) {
-            if (err) {
-                alert(err);
-                throw err;
-            }
-            document.getElementById("pad").value = data;
-        });
-    }
-}
-
-/*
-const dialogPopup = electron.dialog;
-  console.log(document.getElementById("pad").value)
-  dialogPopup.showSaveDialog().then(file => {
-    // Stating whether dialog operation was cancelled or not.
-    if (!file.canceled) {
-      console.log(file.filePath.toString());
-
-      // Creating and Writing to the sample.txt file
-      fs.writeFile(file.filePath.toString(),
-        'This is a Sample File', function (err) {
-          if (err) throw err;
-          console.log('Saved!');
-        });
-    }
-  }).catch(err => {
-    console.log(err)
-  });}
-
-function ctrlSPressed() {
-    if (event.ctrlKey && event.key == "s") {
-        console.log(document.getElementById("pad").value)
-        dialog.showSaveDialog().then(file => {
-            // Stating whether dialog operation was cancelled or not.
-            if (!file.canceled) {
-                console.log(file.filePath.toString());
-
-                // Creating and Writing to the sample.txt file
-                fs.writeFile(file.filePath.toString(),
-                    'This is a Sample File', function (err) {
-                        if (err) throw err;
-                        console.log('Saved!');
-                    });
-            }
-        }).catch(err => {
-            console.log(err)
-        });
-    }
-}
-
-
-function ctrlSPressed() {
-    if (event.ctrlKey && event.key == "s") {
-        console.log(document.getElementById("pad").value)
-        electron.dialog.showSaveDialog({
-            title: 'Save the pad as a file.',
-            defaultPath: `${homedir}/Documents`,
+        dialog.showSaveDialog({
+            title: 'Save',
+            defaultPath: app.getPath('documents'),
             buttonLabel: 'Save',
             // Restricting the user to only Text Files.
             filters: [
                 {
-                    name: 'Text Files',
-                    extensions: ['pad', 'txt']
+                    name: 'Text Documents',
+                    extensions: ['pad', 'txt', 'md']
                 },],
             properties: []
-        }).then(file => {
+        }).then((file) => {
+            // Add the selected file to the recent documents in the taskbar menu.
+            app.addRecentDocument(file.filePath);
             // Stating whether dialog operation was cancelled or not.
             if (!file.canceled) {
-                console.log(file.filePath.toString());
-
-                // Creating and Writing to the sample.txt file
+                // Creating and writing the file.
                 fs.writeFile(file.filePath.toString(),
-                    'This is a Sample File', function (err) {
-                        if (err) throw err;
-                        console.log('Saved!');
+                    (document.getElementById("pad")).value,
+                    function (err) {
+                        if (err) {
+                            alert(err);
+                            throw err;
+                        }
                     });
             }
-        }).catch(err => {
-            console.log(err)
+        }).catch((err) => {
+            alert(err);
+            throw err;
         });
     }
-}*/
+
+    if (event.ctrlKey && event.key == "o") {
+        dialog.showOpenDialog({
+            title: 'Open',
+            defaultPath: app.getPath('documents'),
+            buttonLabel: 'Open',
+            // Restricting the user to only Text Files.
+            filters: [
+                {
+                    name: 'Text Documents',
+                    extensions: ['pad', 'txt', 'md']
+                },],
+            properties: ['openFile']
+        }).then((file) => {
+            // Add the selected file to the recent documents in the taskbar menu.
+            app.addRecentDocument(file.filePath);
+            // Stating whether dialog operation was cancelled or not.
+            if (!file.canceled) {
+                // Reading the file and setting the value.
+                fs.readFile(file.filePaths.toString(), 'utf8', function(err, data) {
+                    if (err) {
+                        alert(err);
+                        throw err;
+                    }
+                    document.getElementById("pad").value = data;
+                });
+            }
+        }).catch((err) => {
+            alert(err);
+            throw err;
+        });
+    }
+}
