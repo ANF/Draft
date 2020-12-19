@@ -7,6 +7,7 @@
     "baseUrl": ".",
     "outDir": "dist",
     "moduleResolution": "node",
+    "pretty": true,
     "resolveJsonModule": true,
     "paths": {
       "*": ["node_modules/*"]
