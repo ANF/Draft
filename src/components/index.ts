@@ -1,10 +1,16 @@
-import { app, BrowserWindow, Menu, MenuItem, webContents } from 'electron';
+import { app, BrowserWindow, Menu, MenuItem, dialog, nativeTheme, remote } from 'electron';
+import * as fs from 'fs';
 import * as path from 'path';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
   app.quit();
 }
+
+app.on('open-file', (event, path) => {
+  if (fs.statSync(path)) (document.getElementById("pad") as HTMLInputElement).value = path;
+  createWindow()
+})
 
 const createWindow = (): void => {
   // Create the browser window.
@@ -17,10 +23,14 @@ const createWindow = (): void => {
       enableRemoteModule: true,
       textAreasAreResizable: false,
       disableDialogs: false,
+      preload: 'preload.ts'
       //devTools: false,
     }
   });
+  nativeTheme.themeSource = 'light';
+  mainWindow.setMenu(null);
 
+  //#region Right Click Actions
   // Create a new menu and assign it (result: no menu),
   //const appMenu = new Menu();
   //Menu.setApplicationMenu(appMenu);
@@ -36,6 +46,18 @@ const createWindow = (): void => {
       }))
     }
 
+    /** TODO: Enable/Disable spell-check.
+    rightClick.append(
+      new MenuItem({
+        label: 'Spell Check',
+        type: 'checkbox',
+        checked: true,
+        click: (checked, BrowserWindow) => {
+          if (checked) {  }
+        }
+      })
+    );*/
+
     // Allow users to add the misspelled word to the dictionary
     if (params.misspelledWord) {
       rightClick.append(
@@ -50,8 +72,9 @@ const createWindow = (): void => {
     } else { return; }
     rightClick.popup();
   });
+  //#endregion
 
-  // load the index.html of the app
+  // load the index.html of the app and if the file has access and loads it.
   mainWindow.loadFile('./src/pages/index.html');
 
   // and finally show the window.
@@ -61,6 +84,7 @@ const createWindow = (): void => {
   mainWindow.webContents.openDevTools();
 };
 
+//#region Event Handlers
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -82,6 +106,8 @@ app.on('activate', () => {
     createWindow();
   }
 });
+//#endregion
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
