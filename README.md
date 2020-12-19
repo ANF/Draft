@@ -18,6 +18,10 @@
 ### I'm living on the Edge, give me the latest features
 You can simply grab a pre-release with the latest features or works that are under development. Keep in mind that things may break or appear unexpectedly.
 
+### Where's the gui release?
+
+<p>The gui release is currently in development but you can get it <a href = "https://github.com/ANF-Studios/ANFPad/releases/tag/0.3-a3">here</p>
+
 <h2 align="center">Further help</h2>
 <p>You can <a href="https://github.com/ANF-Studios/ListManager/issues">create an issue</a> or just join the support server.</p>
 
