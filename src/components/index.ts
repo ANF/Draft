@@ -23,7 +23,6 @@ const createWindow = (): void => {
       enableRemoteModule: true,
       textAreasAreResizable: false,
       disableDialogs: false,
-      preload: 'preload.ts'
       //devTools: false,
     }
   });
