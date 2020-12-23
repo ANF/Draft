@@ -2,6 +2,7 @@ const { dialog, app, BrowserWindow, Menu } = require('electron').remote;
 const fs = require('fs');
 
 function checkForCommands(event) {
+    /*
     if (event.ctrlKey && event.key == "s") {
         dialog.showSaveDialog({
             title: 'Save',
@@ -65,7 +66,7 @@ function checkForCommands(event) {
             alert(err);
             throw err;
         });
-    }
+    }*/
     // This is the secret easter egg 👀
     if (event.shiftKey && event.altKey && event.keyCode == 65) {
         var EasterWindow = new BrowserWindow(({
