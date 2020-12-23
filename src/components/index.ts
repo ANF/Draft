@@ -1,94 +1,49 @@
-import { app, BrowserWindow, Menu, MenuItem, dialog, nativeTheme, shell } from 'electron';
+import { app, BrowserWindow, Menu, MenuItem, dialog, nativeTheme, shell, ipcMain, remote, globalShortcut } from 'electron';
 import * as fs from 'fs';
 import * as path from 'path';
+
+var mainWindow: BrowserWindow;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
   app.quit();
 }
 
-app.on('open-file', (event, path) => {
-  (document.getElementById("pad") as HTMLInputElement).value = path;
-  createWindow()
-})
+app.on('open-file', async (event, dir) => {
+  await createWindow();
+  fs.readFile(dir, (err, data) => {
+    alert(err);
+    if (err) {alert(err);throw(err);}
+    mainWindow.webContents.send('load-text', data);
+  });
+});
 
-const createWindow = (): void => {
+async function createWindow() {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     height: 500,
     width: 800,
+    titleBarStyle: "hidden",
+    frame: false,
     icon: './src/images/favicon.ico',
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
       textAreasAreResizable: false,
       disableDialogs: false,
+      preload: path.join(__dirname, 'preload.js'),
       devTools: false,
     }
   });
-  nativeTheme.themeSource = 'light';
-  mainWindow.setMenu(null);
+  
+  // This part initializes the custom titlebar (and menubar).
+  mainWindow.webContents.once('did-finish-load', () => mainWindow.webContents.send('create-titlebar'));
 
-  const menu = new Menu();
-  //#region Menu Creation
-  menu.append(new MenuItem({
-    label: 'File',
-    role: 'fileMenu',
-    submenu: [
-      {
-        label: 'Save',
-        accelerator: 'Ctrl+S',
-        click: () => { alert('Under Construction!') }
-      },
-      {
-        label: 'Open',
-        accelerator: 'Ctrl+O',
-        click: () => { alert('Under Construction!') }
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Exit',
-        role: 'close'
-      }
-    ]
-  }));
-  menu.append(new MenuItem({
-    label: 'Edit',
-    role: 'editMenu'
-  }));
-  menu.append(new MenuItem({
-    label: 'Help',
-    submenu: [
-      {
-        label: 'About',
-        click: () => {
-          const options = {
-            defaultId: 2,
-            title: 'Help - ANFPad',
-            message: 'Thank you for using ANFPad',
-            detail: `This is ANFPad running v0.3.0 using\nElectron: v${process.versions.electron}\nNodeJS: v${process.versions.node}`,
-            checkboxLabel: 'Get support',
-            checkboxChecked: false,
-            type: 'info',
-            noLink: false,
-          };
-        
-          dialog.showMessageBox(mainWindow, options).then((response) => {
-            if (response.checkboxChecked) shell.openExternal('https://github.com/ANF-Studios/ANFPad#further-help');
-          }).catch((err) => {alert(err);throw err;});
-        }
-      }
-    ]
-  }))
-  //#endregion
-  mainWindow.setMenu(menu);
+  // Disables reload shortcuts.
+  globalShortcut.register("CommandOrControl+R", () => { })
+  globalShortcut.register("CommandOrControl+Shift+R", () => { })
 
   //#region Right Click Actions
-  // Create a new menu and assign it (result: no menu),
-  //const appMenu = new Menu();
-  //Menu.setApplicationMenu(appMenu);
   mainWindow.webContents.on('context-menu', (event, params) => {
     const rightClick = new Menu();
     for (const suggestion of params.dictionarySuggestions) {
@@ -130,13 +85,13 @@ const createWindow = (): void => {
   //#endregion
 
   // load the index.html of the app and if the file has access and loads it.
-  mainWindow.loadFile('./src/pages/index.html');
+  await mainWindow.loadFile('./src/pages/index.html');
 
   // and finally show the window.
   mainWindow.show();
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 };
 
 //#region Event Handlers
