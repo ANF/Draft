@@ -12,10 +12,10 @@ module.exports = {
       "config": {
         "setupIcon": path.join(__dirname, "src", "images", "favicon.ico"),
         "iconUrl": "https://raw.githubusercontent.com/ANF-Studios/ANFPad/master/src/images/favicon.ico",
-          "name": "ANFPad",
-          "authors": "ANF-Studios",
-          "description": "A simple application that manages all your notes.",
-          "noMsi": "true",
+        "name": "ANFPad",
+        "authors": "ANF-Studios",
+        "description": "A simple application that manages all your notes.",
+        "noMsi": "true",
       }
     },
     {
