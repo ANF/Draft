@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap');
+/*TODO: Add the JetBrains Mono font, request by Yasahiro
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap');
+font-family: 'JetBrains Mono', monospace;*/
 
 body {
   margin: 0;
@@ -7,10 +11,15 @@ body {
 }
 
 html, body {
+  width: 100vh;
   height: 100vh;
-  width: 100vw;
   overflow: hidden;
 }
+
+.titlebar, .titlebar > * {
+  font-family: 'JetBrains Mono', monospace; /*This is to apply the font in the titlebar*/
+}
+
 
 /*
 The actual text area where the user inputs text.
@@ -22,14 +31,44 @@ textarea {
 Sample code for changing the color.
 */
 textarea {
-  font-family: 'Roboto';
-  height: 100vh;
-  width: 100vw;
+  font-family: 'Roboto', sans-serif;
+  width: 99.7%;
+  height: 95.5%;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
   font-size: 20px; /*Font size for the input text*/
   outline: none; /*The entire outline code is to disable a yellow color that appears when clicking on it*/
   outline-color: transparent;
   outline-style: none;
-  color: black; /*This is the text color*/
+  color: whitesmoke; /*This is the text color*/
+  background-color: #242424;
   resize: none; /*This is to remove the resize option found on the bottom-right corner*/
   border: none; /*This removes the black outline from the border*/
 }
+
+/*#region Scroll bar*/
+/*Scroll bar*/
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px transparent; 
+  border-radius: 0px;
+  background: transparent;
+  background-color: transparent;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #30302f; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #2e2e2d; 
+}
+/*#endregion*/
