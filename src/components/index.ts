@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, MenuItem, dialog, nativeTheme, shell, ipcMain, remote, globalShortcut } from 'electron';
+import { app, BrowserWindow, Menu, MenuItem, nativeTheme, shell, ipcMain, ipcRenderer, globalShortcut } from 'electron';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -9,21 +9,14 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
   app.quit();
 }
 
-app.on('open-file', async (event, dir) => {
-  await createWindow();
-  fs.readFile(dir, (err, data) => {
-    alert(err);
-    if (err) {alert(err);throw(err);}
-    mainWindow.webContents.send('load-text', data);
-  });
-});
-
 async function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    height: 500,
     width: 800,
-    titleBarStyle: "hidden",
+    height: 500,
+    minWidth: 500,
+    minHeight: 400,
+    titleBarStyle: 'hidden',
     frame: false,
     icon: './src/images/favicon.ico',
     webPreferences: {
@@ -32,9 +25,11 @@ async function createWindow() {
       textAreasAreResizable: false,
       disableDialogs: false,
       preload: path.join(__dirname, 'preload.js'),
-      devTools: false,
+      //devTools: false,
     }
   });
+  // Set the theme to dark mode.
+  nativeTheme.themeSource = 'dark';
   
   // This part initializes the custom titlebar (and menubar).
   mainWindow.webContents.once('did-finish-load', () => mainWindow.webContents.send('create-titlebar'));
@@ -116,8 +111,26 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+// Note: This event only works on MacOS
+app.on('open-file', (event, dir) => {
+  // If invoked when the cancelable attribute
+  // value is true, and while executing a
+  // listener for the event with passive set
+  // to false, signals to the operation that
+  // caused event to be dispatched that it
+  // needs to be canceled.
+  event.preventDefault();
+  // When a file is opened, the containing text is read
+  // and is finally loaded into the html document.
+  fs.readFile(dir, (err, data) => {
+    if (err) {alert(err);throw(err);}
+    // This part sends a message to the renderer process
+    // to set the data (text) in the textarea to be displayed.
+    mainWindow.webContents.send('load-text', data);
+  });
+});
 //#endregion
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
-
