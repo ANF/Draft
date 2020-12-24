@@ -9,37 +9,26 @@
   <title>ANFPad</title>
   <link rel="stylesheet" href="../styles/index.css">
   <script defer>
-    const { BrowserWindow } = require('electron').remote;
-    function checkForCommands() {
+    const partyjs = require('../components/party')
+    function checkForTheSecret() {
       if (event.shiftKey && event.altKey && event.keyCode == 65) {
-        var EasterWindow = new BrowserWindow(({
-          height: 400,
-          width: 400,
-          minHeight: 400,
-          minWidth: 400,
-          icon: './src/images/favicon.ico',
-          title: 'You found the easter egg! - ANFPad',
-          fullscreen: false,
-          resizable: false,
-          fullscreenable: false,
-          minimizable: false,
-          maximizable: false,
-          webPreferences: {
-            devTools: false,
-          }
-        }));
-        EasterWindow.removeMenu();
-        EasterWindow.loadFile('./src/pages/easter.html');
-        EasterWindow.show();
+        partyjs.element(event.target, {
+          color: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
+          count: partyjs.variation(25, 0.5),
+          size: partyjs.minmax(7.5, 15),
+          velocity: partyjs.minmax(-300, -600),
+          angularVelocity: partyjs.minmax(6, 9)
+        });
       }
     }
   </script>
+  <!--<script src="../../node_modules/party-js/party.min.js"></script>-->
   <noscript style="text-align: center; padding: 50%;">Oh no!<br />
     We cannot run ANFPad with scripts disabled! Please enable scripts.</noscript>
 </head>
 
 <body>
-  <textarea id="pad" onkeydown="checkForCommands(event)" placeholder="Start writing!"></textarea>
+  <textarea id="pad" onkeydown="checkForTheSecret(event)" placeholder="Start writing!"></textarea>
 </body>
 
 </html>
