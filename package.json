@@ -9,9 +9,10 @@
     "start": "tsc && electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish --arch=ia32 --platform=win32",
+    "publish": "tsc && electron-forge publish --arch=ia32 --platform=win32",
     "lint": "eslint --ext .ts .",
-    "packager pack": "electron-packager . --platform=win32 --arch=ia32 ANFPad --icon ./src/images/favicon.ico"
+    "packager pack": "electron-packager . --platform=win32 --arch=ia32 ANFPad --icon ./src/images/favicon.ico",
+    "deb64_pub": "tsc && electron-installer-debian --src dist/ --dest dist/installers/ --arch amd64"
   },
   "publisher": "ANF-Studios",
   "author": {
