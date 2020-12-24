@@ -4,9 +4,17 @@ import { IpcRendererEvent } from 'electron/main';
 import * as fs from 'fs';
 
 ipcRenderer.once('create-titlebar', () => {
-    //
-    remote.globalShortcut.register("CommandOrControl+S", () => saveFile());
-    remote.globalShortcut.register("CommandOrControl+O", () => openFile());
+    // Set the Save and Open file shortcuts.
+    remote.globalShortcut.register("CommandOrControl+S", () => {
+        var window = remote.getCurrentWindow();
+        if (window.isMinimized() == false && window.isFocused() == true) saveFile();
+        else return;
+    });
+    remote.globalShortcut.register("CommandOrControl+O", () => {
+        var window = remote.getCurrentWindow();
+        if (window.isMinimizable() == false && window.isFocused() == true) openFile();
+        else return;
+    });
     const menu = new remote.Menu();
     menu.append(new remote.MenuItem({
         label: 'File',
@@ -58,6 +66,7 @@ ipcRenderer.once('create-titlebar', () => {
             }
         ]
     }));
+    console.log(process.argv);
     new customTitlebar.Titlebar({
         backgroundColor: customTitlebar.Color.fromHex('#1E1E1E'),
         icon: '../images/favicon.ico',
@@ -82,7 +91,7 @@ function saveFile() {
         properties: []
     }).then((file) => {
         // Add the selected file to the recent documents in the taskbar menu.
-        remote.app.addRecentDocument(file.filePath);
+        try{remote.app.addRecentDocument(file.filePath);}catch{}
         // Stating whether dialog operation was cancelled or not.
         if (!file.canceled) {
             // Creating and writing the file.
@@ -115,7 +124,7 @@ function openFile() {
         properties: ['openFile']
     }).then((file: Electron.OpenDialogReturnValue) => {
         // Add the selected file to the recent documents in the taskbar menu.
-        remote.app.addRecentDocument(file.filePaths[0]);
+        try{remote.app.addRecentDocument(file.filePaths[0]);}catch{}
         // Stating whether dialog operation was cancelled or not.
         if (!file.canceled) {
             // Reading the file and setting the value.
