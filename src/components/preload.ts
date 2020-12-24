@@ -1,6 +1,6 @@
 import customTitlebar = require('custom-electron-titlebar');
-import { ipcRenderer, shell, remote } from 'electron';
-import { IpcRendererEvent } from 'electron/main';
+import { ipcRenderer, shell, remote, IpcRendererEvent, } from 'electron';
+import * as markdownRenderer from 'markdown-it';
 import * as fs from 'fs';
 
 ipcRenderer.once('create-titlebar', () => {
@@ -13,6 +13,12 @@ ipcRenderer.once('create-titlebar', () => {
     remote.globalShortcut.register("CommandOrControl+O", () => {
         var window = remote.getCurrentWindow();
         if (window.isMinimizable() == false && window.isFocused() == true) openFile();
+        else return;
+    });
+    // Set the rendering shortcut.
+    remote.globalShortcut.register("CommandOrControl+Shift+R", () => {
+        var window = remote.getCurrentWindow();
+        if (window.isMinimizable() == false && window.isFocused() == true) renderFile();
         else return;
     });
     const menu = new remote.Menu();
@@ -29,6 +35,11 @@ ipcRenderer.once('create-titlebar', () => {
                 label: 'Open',
                 accelerator: 'Ctrl+O',
                 click: () => openFile()
+            },
+            {
+                label: 'Render',
+                accelerator: 'Ctrl+Shift+R',
+                click: () => renderFile()
             },
             {
                 type: 'separator'
@@ -140,4 +151,27 @@ function openFile() {
         alert(err);
         throw err;
     });
+}
+
+function renderFile() {
+    let renderer: markdownRenderer;
+    renderer = new markdownRenderer({
+        breaks: true,
+        html: true,
+        typographer: true,
+        xhtmlOut: true,
+    });
+    let rendererWindow = new remote.BrowserWindow({
+        darkTheme: true,
+        minimizable: false,
+        maximizable: true,
+        icon: './src/images/favicon.ico',
+        title: 'Markdown Render - ANFPad',
+        webPreferences: {}
+    });
+    rendererWindow.removeMenu();
+    var result = renderer.render((document.getElementById('pad') as HTMLInputElement).value);
+    fs.writeFileSync('./render.html', result, {encoding: 'utf-8'});
+    rendererWindow.loadFile('./render.html')
+    rendererWindow.show();
 }
