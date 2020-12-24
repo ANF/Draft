@@ -34,9 +34,8 @@ async function createWindow() {
   // This part initializes the custom titlebar (and menubar).
   mainWindow.webContents.once('did-finish-load', () => mainWindow.webContents.send('create-titlebar'));
 
-  // Disables reload shortcuts.
+  // Disables the reload shortcut. The force reaload is for rendering.
   globalShortcut.register("CommandOrControl+R", () => { })
-  globalShortcut.register("CommandOrControl+Shift+R", () => { })
 
   //#region Right Click Actions
   mainWindow.webContents.on('context-menu', (event, params) => {
