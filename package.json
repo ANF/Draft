@@ -33,6 +33,7 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "@types/markdown-it": "^12.0.0",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
     "electron": "11.0.4",
@@ -44,6 +45,7 @@
   "dependencies": {
     "custom-electron-titlebar": "^3.2.5",
     "electron-squirrel-startup": "^1.0.0",
+    "markdown-it": "^12.0.4",
     "update-electron-app": "^2.0.1"
   }
 }
