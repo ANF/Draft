@@ -8,15 +8,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ANFPad</title>
   <link rel="stylesheet" href="../styles/index.css">
-  <script src="../components/index.html.js"></script>
+  <script defer>
+    const { BrowserWindow } = require('electron').remote;
+    function checkForCommands() {
+      if (event.shiftKey && event.altKey && event.keyCode == 65) {
+        var EasterWindow = new BrowserWindow(({
+          height: 400,
+          width: 400,
+          minHeight: 400,
+          minWidth: 400,
+          icon: './src/images/favicon.ico',
+          title: 'You found the easter egg! - ANFPad',
+          fullscreen: false,
+          resizable: false,
+          fullscreenable: false,
+          minimizable: false,
+          maximizable: false,
+          webPreferences: {
+            devTools: false,
+          }
+        }));
+        EasterWindow.removeMenu();
+        EasterWindow.loadFile('./src/pages/easter.html');
+        EasterWindow.show();
+      }
+    }
+  </script>
   <noscript style="text-align: center; padding: 50%;">Oh no!<br />
     We cannot run ANFPad with scripts disabled! Please enable scripts.</noscript>
 </head>
 
 <body>
-  <textarea id="pad" data-preview="#preview" onkeydown="checkForCommands(event)"
-    placeholder="Start writing!"></textarea>
-  <div id="preview"></div>
+  <textarea id="pad" onkeydown="checkForCommands(event)" placeholder="Start writing!"></textarea>
 </body>
 
 </html>
