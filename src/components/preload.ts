@@ -1,20 +1,29 @@
 import customTitlebar = require('custom-electron-titlebar');
-import { ipcRenderer, shell, remote, IpcRendererEvent, } from 'electron';
+import { ipcRenderer, shell, remote, IpcRendererEvent, app, } from 'electron';
 import * as markdownRenderer from 'markdown-it';
 import * as fs from 'fs';
 
-ipcRenderer.once('create-titlebar', () => {
+var titleBar: customTitlebar.Titlebar;
+var openFilePath: string = null;
+var fileIsOpen: boolean = false;
+
+ipcRenderer.on('create-titlebar', () => {
     // Set the Save and Open file shortcuts.
-    remote.globalShortcut.register("CommandOrControl+S", () => {
-        var window = remote.getCurrentWindow();
-        if (window.isMinimized() == false && window.isFocused() == true) saveFile();
-        else return;
-    });
     remote.globalShortcut.register("CommandOrControl+O", () => {
         var window = remote.getCurrentWindow();
         if (window.isMinimizable() == false && window.isFocused() == true) openFile();
         else return;
     });
+    remote.globalShortcut.register("CommandOrControl+S", () => {
+        var window = remote.getCurrentWindow();
+        if (window.isMinimized() == false && window.isFocused() == true) saveFile();
+        else return;
+    });
+    remote.globalShortcut.register('CommandOrControl+Shift+S', () => {
+        var window = remote.getCurrentWindow();
+        if (window.isMinimized() == false && window.isFocused() == true) saveFile('Save As');
+        else return;
+    })
     // Set the rendering shortcut.
     remote.globalShortcut.register("CommandOrControl+Shift+R", () => {
         var window = remote.getCurrentWindow();
@@ -27,18 +36,23 @@ ipcRenderer.once('create-titlebar', () => {
         role: 'fileMenu',
         submenu: [
             {
-                label: 'Save',
-                accelerator: 'Ctrl+S',
-                click: () => saveFile()
-            },
-            {
                 label: 'Open',
-                accelerator: 'Ctrl+O',
+                accelerator: 'CmdOrCtrl+O',
                 click: () => openFile()
             },
             {
+                label: 'Save',
+                accelerator: 'CmdOrCtrl+S',
+                click: () => saveFile()
+            },
+            {
+                label: 'Save As',
+                accelerator: 'CmdOrCtrl+Shift+S',
+                click: () => saveFile()
+            },
+            {
                 label: 'Render',
-                accelerator: 'Ctrl+Shift+R',
+                accelerator: 'CmdOrCtrl+Shift+R',
                 click: () => renderFile()
             },
             {
@@ -78,47 +92,70 @@ ipcRenderer.once('create-titlebar', () => {
         ]
     }));
     console.log(process.argv);
-    new customTitlebar.Titlebar({
+    titleBar = new customTitlebar.Titlebar({
         backgroundColor: customTitlebar.Color.fromHex('#1E1E1E'),
         icon: '../images/favicon.ico',
         menu: menu,
     });
 });
 
+// This part of the code adds an asterisk to the beginning,
+// this indicates that the file is unsaved.
+document.addEventListener('keydown', (event: KeyboardEvent) => {
+    if (openFilePath !== null) {
+        fs.readFile(openFilePath, (err, data) => {
+            if (err) { alert(err); throw (err); }
+            if ((document.getElementById("pad") as HTMLInputElement).value !== data.toString()) {
+                titleBar.updateTitle(`*${openFilePath.replace(/^.*[\\\/]/, '')} - ANFPad`);
+            };
+        })
+    }
+});
+
 ipcRenderer.on('load-text', (event: IpcRendererEvent, data: Buffer) =>
     (document.getElementById("pad") as HTMLInputElement).value = data.toString());
 
-function saveFile() {
-    remote.dialog.showSaveDialog({
-        title: 'Save',
-        defaultPath: remote.app.getPath('documents'),
-        buttonLabel: 'Save',
-        // Restricting the user to only Text Files.
-        filters: [
-            {
-                name: 'Text Documents',
-                extensions: ['pad', 'txt', 'md']
-            },],
-        properties: []
-    }).then((file) => {
-        // Add the selected file to the recent documents in the taskbar menu.
-        try{remote.app.addRecentDocument(file.filePath);}catch{}
-        // Stating whether dialog operation was cancelled or not.
-        if (!file.canceled) {
-            // Creating and writing the file.
-            fs.writeFile(file.filePath.toString(),
-                (document.getElementById("pad") as HTMLInputElement).value,
-                function (err: NodeJS.ErrnoException) {
-                    if (err) {
-                        alert(err);
-                        throw err;
-                    }
-                });
-        }
-    }).catch((err: NodeJS.ErrnoException) => {
-        alert(err);
-        throw err;
-    });
+function saveFile(saveTitle: string = 'Save') {
+    if (fileIsOpen == true) {
+        fs.writeFile(openFilePath,
+            (document.getElementById("pad") as HTMLInputElement).value,
+            (err) => {
+                if (err) { alert(err); throw (err); }
+            });
+    }
+    else {
+        remote.dialog.showSaveDialog({
+            title: saveTitle,
+            defaultPath: remote.app.getPath('documents'),
+            buttonLabel: 'Save',
+            // Restricting the user to only Text Files.
+            filters: [
+                {
+                    name: 'Text Documents',
+                    extensions: ['pad', 'txt', 'md']
+                },],
+            properties: []
+        }).then((file) => {
+            // Add the selected file to the recent documents in the taskbar menu.
+            try { remote.app.addRecentDocument(file.filePath); } catch { }
+            // Stating whether dialog operation was cancelled or not.
+            if (!file.canceled) {
+                // Creating and writing the file.
+                fs.writeFile(file.filePath.toString(),
+                    (document.getElementById("pad") as HTMLInputElement).value,
+                    function (err: NodeJS.ErrnoException) {
+                        if (err) {
+                            alert(err);
+                            throw err;
+                        }
+                    });
+            }
+        }).catch((err: NodeJS.ErrnoException) => {
+            alert(err);
+            throw err;
+        });
+    }
+    titleBar.updateTitle(`${openFilePath.replace(/^.*[\\\/]/, '')} - ANFPad`);
 }
 
 function openFile() {
@@ -135,7 +172,7 @@ function openFile() {
         properties: ['openFile']
     }).then((file: Electron.OpenDialogReturnValue) => {
         // Add the selected file to the recent documents in the taskbar menu.
-        try{remote.app.addRecentDocument(file.filePaths[0]);}catch{}
+        try { remote.app.addRecentDocument(file.filePaths[0]); } catch { }
         // Stating whether dialog operation was cancelled or not.
         if (!file.canceled) {
             // Reading the file and setting the value.
@@ -145,6 +182,12 @@ function openFile() {
                     throw err;
                 }
                 (document.getElementById("pad") as HTMLInputElement).value = data;
+                // Change the title bar to `${fileName} - ${applicationName}`,
+                titleBar.updateTitle(`${file.filePaths[0].replace(/^.*[\\\/]/, '')} - ANFPad`);
+                // Set the opened file path for later use.
+                openFilePath = file.filePaths[0].toString();
+                // And set the fileIsOpen bool to true.
+                fileIsOpen = true;
             });
         }
     }).catch((err: NodeJS.ErrnoException) => {
@@ -171,7 +214,7 @@ function renderFile() {
     });
     rendererWindow.removeMenu();
     var result = renderer.render((document.getElementById('pad') as HTMLInputElement).value);
-    fs.writeFileSync('./render.html', result, {encoding: 'utf-8'});
+    fs.writeFileSync('./render.html', result, { encoding: 'utf-8' });
     rendererWindow.loadFile('./render.html')
     rendererWindow.show();
 }
