@@ -19,8 +19,14 @@ module.exports = {
       }
     },
     {
-      "name": "@electron-forge/maker-zip",
+      "name": "@electron-forge/maker-deb",
       "platforms": ['darwin', 'linux'],
+      "config": {
+        "options": {
+          "name": "ANFPad",
+          "icon": path.join(__dirname, "src", "images", "favicon.ico")
+        }
+      }
     },
     {
       "name": "@electron-forge/maker-deb",
