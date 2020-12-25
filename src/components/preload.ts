@@ -201,6 +201,7 @@ function renderFile() {
     renderer = new markdownRenderer({
         breaks: true,
         html: true,
+        linkify: true,
         typographer: true,
         xhtmlOut: true,
     });
