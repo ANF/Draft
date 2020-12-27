@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, MenuItem, nativeTheme, shell, ipcMain, ipcRenderer, globalShortcut } from 'electron';
+import { app, BrowserWindow, Menu, MenuItem, globalShortcut } from 'electron';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -25,11 +25,9 @@ async function createWindow() {
       textAreasAreResizable: false,
       disableDialogs: false,
       preload: path.join(__dirname, 'preload.js'),
-      //devTools: false,
+      devTools: false,
     }
   });
-  // Set the theme to dark mode.
-  nativeTheme.themeSource = 'dark';
   
   // This part initializes the custom titlebar (and menubar).
   mainWindow.webContents.once('did-finish-load', () => mainWindow.webContents.send('create-titlebar'));
@@ -85,7 +83,7 @@ async function createWindow() {
   mainWindow.show();
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
 };
 
 //#region Event Handlers
