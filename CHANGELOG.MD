@@ -1,5 +1,19 @@
 <h1 align="center">CHANGELOG</h1>
 
+## [0.4](https://github.com/ANF-Studios/ANFPad/releases/tag/0.4.0)
+- The first stable release
+- Updated easter egg
+- Add custom titlebar
+- Added menu bar
+- Added new themes:
+    - System (Default)
+    - Dark
+    - Light
+    - Monkai
+- Fixed some bugs
+- Upgraded TypeScript version
+- Added support section
+
 ## [0.3-a3](https://github.com/ANF-Studios/ANFPad/releases/tag/0.30-a3)
 - **[Experimental]** You can directly open files from the original file itself.
     - Note: It didn't work last tested.
