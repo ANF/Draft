@@ -1,7 +1,7 @@
 {
   "name": "anfpad",
   "productName": "ANFPad",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A simple application that manages all your notes.",
   "main": "dist/index.js",
   "private": "true",
@@ -41,7 +41,7 @@
     "eslint": "^7.15.0",
     "eslint-plugin-import": "^2.22.1",
     "party-js": "^1.0.1",
-    "typescript": "^4.1.2"
+    "typescript": "^4.1.3"
   },
   "dependencies": {
     "custom-electron-titlebar": "^3.2.5",
