@@ -1,6 +1,6 @@
 <h1 align="center">CHANGELOG</h1>
 
-## [0.4](https://github.com/ANF-Studios/ANFPad/releases/tag/0.4.0)
+## [0.4-b1](https://github.com/ANF/ANFPad/releases/tag/0.4.0-b1)
 - The first stable release
 - Updated easter egg
 - Add custom titlebar
