@@ -11,8 +11,8 @@ body {
 }
 
 html, body {
-  width: 100vh;
-  height: 100vh;
+  width: 100%; /*100vw*/
+  height: 100%; /*100vh*/
   overflow: hidden;
 }
 
@@ -33,7 +33,7 @@ Sample code for changing the color.
 textarea {
   font-family: 'Roboto', sans-serif;
   width: 99.7%;
-  height: 95.5%;
+  height: 92.6%;
   position: fixed;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -41,7 +41,7 @@ textarea {
   outline: none; /*The entire outline code is to disable a yellow color that appears when clicking on it*/
   outline-color: transparent;
   outline-style: none;
-  color: whitesmoke; /*This is the text color*/
+  color: #f5f5f5; /*This is the text color*/
   background-color: #242424;
   resize: none; /*This is to remove the resize option found on the bottom-right corner*/
   border: none; /*This removes the black outline from the border*/
