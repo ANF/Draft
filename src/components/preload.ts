@@ -41,7 +41,7 @@ ipcRenderer.on('create-titlebar', () => {
     // Set the rendering shortcut.
     remote.globalShortcut.register("CommandOrControl+Shift+R", () => {
         var window = remote.getCurrentWindow();
-        if (window.isMinimizable() == false && window.isFocused() == true) renderFile();
+        if (window.isMinimized() == false && window.isFocused() == true) renderFile();
         else return;
     });
     const menu = new remote.Menu();
@@ -272,18 +272,23 @@ function renderFile() {
         xhtmlOut: true,
     });
     let rendererWindow = new remote.BrowserWindow({
-        darkTheme: true,
+        darkTheme: false,
         minimizable: false,
         maximizable: true,
         icon: './src/images/favicon.ico',
         title: 'Markdown Render - ANFPad',
-        webPreferences: {}
+        webPreferences: {
+            nodeIntegration: true,
+            devTools: false
+        }
     });
     rendererWindow.removeMenu();
     var result = renderer.render((document.getElementById('pad') as HTMLInputElement).value);
-    fs.writeFileSync('./render.html', result, { encoding: 'utf-8' });
-    rendererWindow.loadFile('./render.html')
-    rendererWindow.show();
+    // In final production, relative directories change causing a mess.
+    // This is why it writes somewhere else and reads elsewhere.
+    fs.writeFileSync('./resources/app/render.html', result, { encoding: 'utf-8' });    
+    rendererWindow.webContents.loadFile('./render.html');
+    rendererWindow.on('close', () => fs.unlink('./render.html', (err) => {}));
 }
 
 /**
