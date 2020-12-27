@@ -7,6 +7,20 @@ var titleBar: customTitlebar.Titlebar;
 var openFilePath: string = null;
 var fileIsOpen: boolean = false;
 
+//#region Color Variables.
+const dark_TitlebarColor = '#1E1E1E';
+const dark_TextAreaPadColor = '#242424';
+const dark_TextColor = '#f5f5f5';
+
+const light_TitlebarColor = '#e6e6e6';
+const light_TextAreaPadColor = '#f5f5f5';
+const light_TextColor = '#0a0a0a';
+
+const monkai_TitlebarColor = '#272822';
+const monkai_TextAreaPadColor = '#2f3128';
+const monkai_TextColor = '#f6f8ef';
+//#endregion
+
 ipcRenderer.on('create-titlebar', () => {
     // Set the Save and Open file shortcuts.
     remote.globalShortcut.register("CommandOrControl+O", () => {
@@ -87,16 +101,57 @@ ipcRenderer.on('create-titlebar', () => {
                     remote.dialog.showMessageBox(remote.getCurrentWindow(), options).then((response) => {
                         if (response.checkboxChecked) shell.openExternal('https://github.com/ANF-Studios/ANFPad#further-help');
                     }).catch((err) => { alert(err); throw err; });
-                }
+                },
+            },
+            {
+                label: 'Themes',
+                type: 'submenu',
+                submenu: [
+                    {
+                        label: 'System',
+                        type: 'radio',
+                        click: () => updateTheme('System')
+                    },
+                    {
+                        label: 'Dark',
+                        type: 'radio',
+                        click: () => updateTheme('Dark')
+                    },
+                    {
+                        label: 'Light',
+                        type: 'radio',
+                        click: () => updateTheme('Light')
+                    },
+                    {
+                        label: 'Monkai',
+                        type: 'radio',
+                        click: () => updateTheme('Monkai')
+                    }
+                ]
             }
         ]
     }));
     console.log(process.argv);
+    let theme: string;
+    try {
+        if (fs.existsSync('./theme.data')) fs.readFile('./theme.data', (err, data) => {
+            if (err) { alert(err); throw (err); } theme = data.toString();
+        }); //theme = JSON.parse(fs.readFileSync('./config.json').toString());
+        else theme = null;
+    } catch {
+        fs.unlink('./theme.data', (err) => {
+            if (err) { alert(err); throw (err); }
+        });
+        alert("There was an error in parsing the settings, settings are reverted to default.");
+    }
     titleBar = new customTitlebar.Titlebar({
         backgroundColor: customTitlebar.Color.fromHex('#1E1E1E'),
         icon: '../images/favicon.ico',
         menu: menu,
     });
+    // Update the theme according to the previously
+    // used theme or system if the former is not defined.
+    updateTheme(theme || 'System');
 });
 
 // This part of the code adds an asterisk to the beginning,
@@ -108,26 +163,30 @@ document.addEventListener('keydown', (event: KeyboardEvent) => {
             if ((document.getElementById("pad") as HTMLInputElement).value !== data.toString()) {
                 titleBar.updateTitle(`*${openFilePath.replace(/^.*[\\\/]/, '')} - ANFPad`);
             };
-        })
+        });
     }
 });
 
 ipcRenderer.on('load-text', (event: IpcRendererEvent, data: Buffer) =>
     (document.getElementById("pad") as HTMLInputElement).value = data.toString());
 
-function saveFile(saveTitle: string = 'Save') {
+/**
+* Saves a file to a sepcified directory.
+*/
+function saveFile(savePrompt: string = 'Save') {
     if (fileIsOpen == true) {
         fs.writeFile(openFilePath,
             (document.getElementById("pad") as HTMLInputElement).value,
             (err) => {
                 if (err) { alert(err); throw (err); }
             });
+        titleBar.updateTitle(`${openFilePath?.replace(/^.*[\\\/]/, '')} - ANFPad`);
     }
     else {
         remote.dialog.showSaveDialog({
-            title: saveTitle,
+            title: savePrompt,
             defaultPath: remote.app.getPath('documents'),
-            buttonLabel: 'Save',
+            buttonLabel: savePrompt,
             // Restricting the user to only Text Files.
             filters: [
                 {
@@ -149,15 +208,19 @@ function saveFile(saveTitle: string = 'Save') {
                             throw err;
                         }
                     });
+                openFilePath = file.filePath.toString();
+                titleBar.updateTitle(`${file.filePath.replace(/^.*[\\\/]/, '')} - ANFPad`);
             }
         }).catch((err: NodeJS.ErrnoException) => {
             alert(err);
             throw err;
         });
     }
-    titleBar.updateTitle(`${openFilePath.replace(/^.*[\\\/]/, '')} - ANFPad`);
 }
 
+/**
+ * Opens a file from the local drive.
+ */
 function openFile() {
     remote.dialog.showOpenDialog({
         title: 'Open',
@@ -196,6 +259,9 @@ function openFile() {
     });
 }
 
+/**
+ * Renders markdown and shows the result in a new window.
+ */
 function renderFile() {
     let renderer: markdownRenderer;
     renderer = new markdownRenderer({
@@ -218,4 +284,52 @@ function renderFile() {
     fs.writeFileSync('./render.html', result, { encoding: 'utf-8' });
     rendererWindow.loadFile('./render.html')
     rendererWindow.show();
+}
+
+/**
+ * Updates the theme and style of the app.
+ * @param themeName The name of the theme to set, if it is not valid/provided,
+ * it defaults back to the system prefered theme.
+ */
+function updateTheme(themeName: string = 'System') {
+    switch (themeName) {
+        case 'System':
+            if (remote.nativeTheme.shouldUseDarkColors) updateTheme('Dark');
+            else updateTheme('Light');
+            break;
+
+        case 'Dark':
+            document.body.style.backgroundColor = dark_TextAreaPadColor;
+            remote.nativeTheme.themeSource = 'dark';
+            var pad = document.getElementById('pad');
+            pad.style.backgroundColor = dark_TextAreaPadColor;
+            pad.style.color = dark_TextColor;
+            titleBar.updateBackground(customTitlebar.Color.fromHex(dark_TitlebarColor));
+            break;
+
+        case 'Light':
+            document.body.style.backgroundColor = light_TextAreaPadColor;
+            remote.nativeTheme.themeSource = 'light';
+            var pad = document.getElementById('pad');
+            pad.style.backgroundColor = light_TextAreaPadColor;
+            pad.style.color = light_TextColor;
+            titleBar.updateBackground(customTitlebar.Color.fromHex(light_TitlebarColor));
+            break;
+
+        case 'Monkai':
+            document.body.style.backgroundColor = monkai_TextAreaPadColor;
+            remote.nativeTheme.themeSource = 'dark';
+            var pad = document.getElementById('pad');
+            pad.style.backgroundColor = monkai_TextAreaPadColor;
+            pad.style.color = monkai_TextColor;
+            titleBar.updateBackground(customTitlebar.Color.fromHex(monkai_TitlebarColor));
+            break;
+
+        default:
+            alert('Something went wrong on function applyTheme\nPlease report to the developer.');
+            throw new Error('Invalid theme name.');
+    }
+    fs.writeFile('./theme.data',
+        themeName,
+        (err) => { if (err) { alert(err); throw (err); } });
 }
