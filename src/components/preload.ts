@@ -92,7 +92,7 @@ ipcRenderer.on('create-titlebar', () => {
                         defaultId: 2,
                         title: 'Help - ANFPad',
                         message: 'Thank you for using ANFPad',
-                        detail: `This is ANFPad running v0.3.0 using\nElectron: v${process.versions.electron}\nNodeJS: v${process.versions.node}`,
+                        detail: `This is ANFPad running v0.4.0 using\nElectron: v${process.versions.electron}\nNodeJS: v${process.versions.node}`,
                         checkboxLabel: 'Get support',
                         checkboxChecked: false,
                         type: 'info',
