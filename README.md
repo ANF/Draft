@@ -25,7 +25,7 @@
 
 <h3>I want to compile my own version</h3>
 <p>Well, you're in luck, there are two ways instructed in this file:</p>
-<h4><strong>[RECOMMENED]</strong> Using PowerShell</h4>
+<h4><strong>[RECOMMENDED]</strong> Using PowerShell</h4>
 <p>Prerequisites:
     <a href="https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell">PowerShell</a>, <a
         href="https://git-scm.com/downloads">Git</a> and <a href="https://nodejs.org/en/download/">NodeJS</a>.
@@ -63,6 +63,18 @@ npm run start;
     <li><code>cd</code> into the directory you downloaded.</li>
     <li>Run <code>npm install && npm run start</code></li>
 </ol>
+
+<span align="center">
+    <h1>Previews</h1>
+    <h5>Light Theme</h5>
+    <img width="500" alt="Light Theme" src="https://user-images.githubusercontent.com/42365887/103587106-21013200-4eac-11eb-9074-b057da4ae19d.png"></img>
+    <h5>Dark Theme</h5>
+    <img width="500" alt="Dark Theme" src="https://user-images.githubusercontent.com/42365887/103587109-21013200-4eac-11eb-92ad-030d94ea5569.png"></img>
+    <h5>Monokai Theme</h5>
+    <img width="500" alt="Monokai Theme" src="https://user-images.githubusercontent.com/42365887/103587098-1e064180-4eac-11eb-89b1-db164061c77a.png"></img>
+    <h5>Markdown Renderer</h5>
+    <img width="500" alt="Markdown Renderer" src="https://user-images.githubusercontent.com/42365887/103587101-1e9ed800-4eac-11eb-92b8-18d426b45519.png"></img>
+    </span>
 
 <h2 align="center">Further help</h2>
 <p>You can <a href="https://github.com/ANF-Studios/ListManager/issues">create an issue</a> or just join the support
