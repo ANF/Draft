@@ -64,8 +64,7 @@ npm run start;
    <h5>Monokai Theme</h5>
    <img width="500" alt="Monokai Theme" src="https://user-images.githubusercontent.com/42365887/103587098-1e064180-4eac-11eb-89b1-db164061c77a.png">
    <h5>Markdown Renderer</h5>
-   <img width="500" alt="Markdown Renderer" src="https://user-images.githubusercontent.com/42365887/103587101-1e9ed800-4eac-11eb-92b8-18d426b45519.png">
-</span>
+   <img width="500" alt="Markdown Renderer" src="https://user-images.githubusercontent.com/42365887/103587101-1e9ed800-4eac-11eb-92b8-18d426b45519.png"></span>
 <h2 align="center">Further help</h2>
 <p>You can <a href="https://github.com/ANF-Studios/ListManager/issues">create an issue</a> or just join the support
    server.
