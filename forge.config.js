@@ -11,8 +11,8 @@ module.exports = {
       "name": "@electron-forge/maker-squirrel",
       "config": {
         "setupIcon": path.join(__dirname, "src", "images", "favicon.ico"),
-        "iconUrl": "https://raw.githubusercontent.com/ANF-Studios/ANFPad/master/src/images/favicon.ico",
-        "name": "ANFPad",
+        "iconUrl": "https://raw.githubusercontent.com/ANF-Studios/Draft/master/src/images/favicon.ico",
+        "name": "Draft",
         "authors": "ANF-Studios",
         "description": "A simple application that manages all your notes.",
         "noMsi": "true",
@@ -23,7 +23,7 @@ module.exports = {
       "platforms": ['darwin', 'linux'],
       "config": {
         "options": {
-          "name": "ANFPad",
+          "name": "Draft",
           "icon": path.join(__dirname, "src", "images", "favicon.ico")
         }
       }

@@ -1,21 +1,24 @@
 <h1 align="center" style="position: relative;">
-    <a href="https://github.com/ANF-Studios/ANFPad"><img width="200" style="border-radius: 50%;"
+    <a href="https://github.com/ANF-Studios/Draft"><img width="200" style="border-radius: 50%;"
             src="./src/images/display.png" /></a><br>
-    ANFPad
+    Draft
 </h1>
 
-<h3 align="center">ANFPad, a small project by ANF-Studios<br>A simple application that manages all your notes</h3>
+<h3 align="center">Draft, a small project by ANF-Studios<br>A simple application that manages all your notes</h3>
 
 <p align="center">
-    <a href="https://github.com/ANF-Studios/ANFPad/blob/master/LICENSE">License</a> •
+    <a href="https://github.com/ANF-Studios/Draft/blob/master/LICENSE">License</a> •
     <a href="https://discord.gg/fKWpK7A">Discord Server</a> •
-    <a href="https://github.com/ANF-Studios/ANFPad/releases/latest">Download</a> •
-    <a href="https://github.com/ANF-Studios/ANFPad/blob/master/CHANGELOG.MD">Changelog</a>
+    <a href="https://github.com/ANF-Studios/Draft/releases/latest">Download</a> •
+    <a href="https://github.com/ANF-Studios/Draft/blob/master/CHANGELOG.MD">Changelog</a>
 </p>
 
+<h2>About</h2>
+<p>Draft was formerly known as ANFPad (and initially; List Manager). The development is active and the project is not abandoned.</p>
+
 <h2 align="center">Using it</h2>
-<p>You can grab the latest release of <a href="https://github.com/ANF-Studios/ANFPad">ANFPad</a> at the <a
-        href="https://github.com/ANF-Studios/ANFPad/releases/latest">releases</a> section and run the installer like any
+<p>You can grab the latest release of <a href="https://github.com/ANF-Studios/Draft">Draft</a> at the <a
+        href="https://github.com/ANF-Studios/Draft/releases/latest">releases</a> section and run the installer like any
     other Electron application.<br /><strong>Note:</strong> At the moment, the GUI version is only a pre-release, so you
     would have to use that if you feel eager for it.</p>
 
@@ -37,11 +40,11 @@
 $desktop = [Environment]::GetFolderPath("Desktop");
 cd $desktop;
 [Console]::Write("[GIT] Cloning respository...\n");
-git clone https://github.com/ANF/ANFPad.git $desktop\ANFPad;
+git clone https://github.com/ANF/Draft.git $desktop\Draft;
 [Console]::Write("[NPM] Installing node_modules...\n");
 npm install;
-# Start ANFPad
-[Console]::Write("[ELECTRONJS] Building ANFPad...\n");
+# Start Draft
+[Console]::Write("[ELECTRONJS] Building Draft...\n");
 npm run start;
 [Console]::Write("[NPM] Starting...\n");
 # Uncomment this part if you want an installer file.
@@ -55,7 +58,7 @@ npm run start;
 <h4>Doing it manually</h4>
 <ol>
     <li>Download the repo:</li>
-    <a href="https://github.com/ANF/ANFPad/archive/master.zip"><img
+    <a href="https://github.com/ANF/Draft/archive/master.zip"><img
             src="https://user-images.githubusercontent.com/68814933/103164783-7a4ad080-47dd-11eb-8796-bc45d5019b4f.png"
             alt="Download the repo"></img></a>
     <li>Extract the (downloaded) zip file.</li>

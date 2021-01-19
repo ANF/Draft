@@ -90,16 +90,16 @@ ipcRenderer.on('create-titlebar', () => {
                 click: () => {
                     const options = {
                         defaultId: 2,
-                        title: 'Help - ANFPad',
-                        message: 'Thank you for using ANFPad',
-                        detail: `This is ANFPad running v0.4.0 using\nElectron: v${process.versions.electron}\nNodeJS: v${process.versions.node}`,
+                        title: 'Help - Draft',
+                        message: 'Thank you for using Draft',
+                        detail: `This is Draft running v0.4.0 using\nElectron: v${process.versions.electron}\nNodeJS: v${process.versions.node}`,
                         checkboxLabel: 'Get support',
                         checkboxChecked: false,
                         type: 'info',
                         noLink: false,
                     };
                     remote.dialog.showMessageBox(remote.getCurrentWindow(), options).then((response) => {
-                        if (response.checkboxChecked) shell.openExternal('https://github.com/ANF-Studios/ANFPad#further-help');
+                        if (response.checkboxChecked) shell.openExternal('https://github.com/ANF-Studios/Draft#further-help');
                     }).catch((err) => { alert(err); throw err; });
                 },
             },
@@ -161,7 +161,7 @@ document.addEventListener('keydown', (event: KeyboardEvent) => {
         fs.readFile(openFilePath, (err, data) => {
             if (err) { alert(err); throw (err); }
             if ((document.getElementById("pad") as HTMLInputElement).value !== data.toString()) {
-                titleBar.updateTitle(`*${openFilePath.replace(/^.*[\\\/]/, '')} - ANFPad`);
+                titleBar.updateTitle(`*${openFilePath.replace(/^.*[\\\/]/, '')} - Draft`);
             };
         });
     }
@@ -180,7 +180,7 @@ function saveFile(savePrompt: string = 'Save') {
             (err) => {
                 if (err) { alert(err); throw (err); }
             });
-        titleBar.updateTitle(`${openFilePath?.replace(/^.*[\\\/]/, '')} - ANFPad`);
+        titleBar.updateTitle(`${openFilePath?.replace(/^.*[\\\/]/, '')} - Draft`);
     }
     else {
         remote.dialog.showSaveDialog({
@@ -209,7 +209,7 @@ function saveFile(savePrompt: string = 'Save') {
                         }
                     });
                 openFilePath = file.filePath.toString();
-                titleBar.updateTitle(`${file.filePath.replace(/^.*[\\\/]/, '')} - ANFPad`);
+                titleBar.updateTitle(`${file.filePath.replace(/^.*[\\\/]/, '')} - Draft`);
             }
         }).catch((err: NodeJS.ErrnoException) => {
             alert(err);
@@ -246,7 +246,7 @@ function openFile() {
                 }
                 (document.getElementById("pad") as HTMLInputElement).value = data;
                 // Change the title bar to `${fileName} - ${applicationName}`,
-                titleBar.updateTitle(`${file.filePaths[0].replace(/^.*[\\\/]/, '')} - ANFPad`);
+                titleBar.updateTitle(`${file.filePaths[0].replace(/^.*[\\\/]/, '')} - Draft`);
                 // Set the opened file path for later use.
                 openFilePath = file.filePaths[0].toString();
                 // And set the fileIsOpen bool to true.
@@ -276,7 +276,7 @@ function renderFile() {
         minimizable: false,
         maximizable: true,
         icon: './src/images/favicon.ico',
-        title: 'Markdown Render - ANFPad',
+        title: 'Markdown Render - Draft',
         webPreferences: {
             nodeIntegration: true,
             devTools: false
