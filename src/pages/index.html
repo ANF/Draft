@@ -22,13 +22,42 @@
       }
     }
   </script>
-  <!--<script src="../../node_modules/party-js/party.min.js"></script>-->
   <noscript style="text-align: center; padding: 50%;">Oh no!<br />
     We cannot run ANFPad with scripts disabled! Please enable scripts.</noscript>
 </head>
 
 <body>
   <textarea id="pad" onkeydown="checkForTheSecret(event)" placeholder="Start writing!"></textarea>
+  <script defer>
+    const textArea = document.getElementById("pad");
+
+    textArea.addEventListener("keypress", (keyBoardEvent) => {
+      switch (keyBoardEvent.key) {
+        case '(':
+          setTimeout(() => textArea.value += ')', 1);
+          break;
+
+        case '{':
+          setTimeout(() => textArea.value += '}', 1);
+          break;
+
+        case '<':
+          setTimeout(() => textArea.value += '>', 1);
+          break;
+
+        case '\'':
+          setTimeout(() => textArea.value += '\'', 1);
+          break;
+
+        case '"':
+          setTimeout(() => textArea.value += '"', 1);
+          break;
+
+        default:
+          break;
+      }
+    });
+  </script>
 </body>
 
 </html>
