@@ -3,27 +3,28 @@
 <html lang="en-US">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Draft</title>
-  <link rel="stylesheet" href="../styles/index.css">
+  <link rel="stylesheet" href="../styles/index.css" />
   <script defer>
-    const partyjs = require('../components/party')
+    const partyjs = require("../components/party");
     function checkForTheSecret() {
       if (event.shiftKey && event.altKey && event.keyCode == 65) {
         partyjs.element(event.target, {
-          color: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
+          color: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"],
           count: partyjs.variation(25, 0.5),
           size: partyjs.minmax(7.5, 15),
           velocity: partyjs.minmax(-300, -600),
-          angularVelocity: partyjs.minmax(6, 9)
+          angularVelocity: partyjs.minmax(6, 9),
         });
       }
     }
   </script>
-  <noscript style="text-align: center; padding: 50%;">Oh no!<br />
-    We cannot run Draft with scripts disabled! Please enable scripts.</noscript>
+  <noscript style="text-align: center; padding: 50%">Oh no!<br />
+    We cannot run Draft with scripts disabled! Please enable
+    scripts.</noscript>
 </head>
 
 <body>
@@ -37,20 +38,20 @@
           setTimeout(() => textArea.value += ')', 1);
           break;
 
-        case '{':
-          setTimeout(() => textArea.value += '}', 1);
+        case "{":
+          setTimeout(() => (textArea.value += "}"), 1);
           break;
 
-        case '<':
-          setTimeout(() => textArea.value += '>', 1);
+        case "<":
+          setTimeout(() => (textArea.value += ">"), 1);
           break;
 
-        case '\'':
-          setTimeout(() => textArea.value += '\'', 1);
+        case "'":
+          setTimeout(() => (textArea.value += "'"), 1);
           break;
 
         case '"':
-          setTimeout(() => textArea.value += '"', 1);
+          setTimeout(() => (textArea.value += '"'), 1);
           break;
 
         default:
