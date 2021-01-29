@@ -72,22 +72,22 @@ npm run start;
     <h5>Light Theme</h5>
     <div>
         <img width="500" alt="Light Theme"
-            src="https://user-images.githubusercontent.com/42365887/103587106-21013200-4eac-11eb-9074-b057da4ae19d.png">
+            src="https://user-images.githubusercontent.com/68814933/106282518-b1facd00-620e-11eb-80c9-15846dbe6311.png"> <!-- https://user-images.githubusercontent.com/42365887/103587106-21013200-4eac-11eb-9074-b057da4ae19d.png -->
     </div>
     <h5>Dark Theme</h5>
     <div>
         <img width="500" alt="Dark Theme"
-            src="https://user-images.githubusercontent.com/42365887/103587109-21013200-4eac-11eb-92ad-030d94ea5569.png">
+            src="https://user-images.githubusercontent.com/68814933/106282518-b1facd00-620e-11eb-80c9-15846dbe6311.png"> <!-- https://user-images.githubusercontent.com/42365887/103587109-21013200-4eac-11eb-92ad-030d94ea5569.png -->
     </div>
     <h5>Monokai Theme</h5>
     <div>
         <img width="500" alt="Monokai Theme"
-            src="https://user-images.githubusercontent.com/42365887/103587098-1e064180-4eac-11eb-89b1-db164061c77a.png">
+            src="https://user-images.githubusercontent.com/68814933/106282577-ca6ae780-620e-11eb-99fb-dbd91b84ae82.png"> <!-- https://user-images.githubusercontent.com/42365887/103587098-1e064180-4eac-11eb-89b1-db164061c77a.png -->
     </div>
     <h5>Markdown Renderer</h5>
     <div>
         <img width="500" alt="Markdown Renderer"
-            src="https://user-images.githubusercontent.com/42365887/103587101-1e9ed800-4eac-11eb-92b8-18d426b45519.png">
+            src="https://user-images.githubusercontent.com/68814933/106282702-f71eff00-620e-11eb-8047-49677d04dbd5.png"> <!-- https://user-images.githubusercontent.com/42365887/103587101-1e9ed800-4eac-11eb-92b8-18d426b45519.png -->
     </div>
 </span>
 
