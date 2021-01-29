@@ -47,52 +47,52 @@
         }
 
         case "{":
-          {
-            let startPos = textArea.selectionStart;
-            let endPos = textArea.selectionEnd;
-            textArea.value =
-              textArea.value.substring(0, startPos) +
-              "}" +
-              textArea.value.substring(endPos, textArea.value.length);
-            textArea.selectionEnd = endPos;
-            break;
-          }
+        {
+          let startPos = textArea.selectionStart;
+          let endPos = textArea.selectionEnd;
+          textArea.value =
+            textArea.value.substring(0, startPos) +
+           "}" +
+          textArea.value.substring(endPos, textArea.value.length);
+          textArea.selectionEnd = endPos;
+          break;
+        }
 
         case "<":
-          {
-            let startPos = textArea.selectionStart;
-            let endPos = textArea.selectionEnd;
-            textArea.value =
-              textArea.value.substring(0, startPos) +
-              ">" +
-              textArea.value.substring(endPos, textArea.value.length);
-            textArea.selectionEnd = endPos;
-            break;
-          }
+        {
+          let startPos = textArea.selectionStart;
+          let endPos = textArea.selectionEnd;
+          textArea.value =
+            textArea.value.substring(0, startPos) +
+            ">" +
+            textArea.value.substring(endPos, textArea.value.length);
+          textArea.selectionEnd = endPos;
+          break;
+        }
 
         case "'":
-          {
-            let startPos = textArea.selectionStart;
-            let endPos = textArea.selectionEnd;
-            textArea.value =
-              textArea.value.substring(0, startPos) +
-              "'" +
-              textArea.value.substring(endPos, textArea.value.length);
-            textArea.selectionEnd = endPos;
-            break;
-          }
+        {
+          let startPos = textArea.selectionStart;
+          let endPos = textArea.selectionEnd;
+          textArea.value =
+           textArea.value.substring(0, startPos) +
+           "'" +
+          textArea.value.substring(endPos, textArea.value.length);
+          textArea.selectionEnd = endPos;
+          break;
+        }
 
         case '"':
-          {
-            let startPos = textArea.selectionStart;
-            let endPos = textArea.selectionEnd;
-            textArea.value =
-              textArea.value.substring(0, startPos) +
-              '"' +
-              textArea.value.substring(endPos, textArea.value.length);
-            textArea.selectionEnd = endPos;
-            break;
-          }
+        {
+          let startPos = textArea.selectionStart;
+          let endPos = textArea.selectionEnd;
+          textArea.value =
+           textArea.value.substring(0, startPos) +
+            '"' +
+          textArea.value.substring(endPos, textArea.value.length);
+          textArea.selectionEnd = endPos;
+          break;
+        }
 
         default:
           break;
