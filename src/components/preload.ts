@@ -118,7 +118,7 @@ ipcRenderer.on('create-titlebar', () => {
                         type: 'info',
                         noLink: false,
                     };
-                    remote.dialog.showMessageBox(remote.getCurrentWindow(), options).then((response) => {
+                    remote.dialog.showMessageBox(appWindow, options).then((response) => {
                         if (response.checkboxChecked) shell.openExternal('https://github.com/ANF-Studios/Draft#further-help');
                     }).catch((err) => { alert(err); throw err; });
                 },
