@@ -115,21 +115,25 @@ ipcRenderer.on('create-titlebar', () => {
                     {
                         label: 'System',
                         type: 'radio',
+                        checked: theme == 'System' || null || undefined,
                         click: () => updateTheme('System')
                     },
                     {
                         label: 'Dark',
                         type: 'radio',
+                        checked: theme == 'Dark',
                         click: () => updateTheme('Dark')
                     },
                     {
                         label: 'Light',
                         type: 'radio',
+                        checked: theme == 'Light',
                         click: () => updateTheme('Light')
                     },
                     {
                         label: 'Monokai',
                         type: 'radio',
+                        checked: theme == 'Monokai',
                         click: () => updateTheme('Monokai')
                     }
                 ]
