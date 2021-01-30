@@ -32,7 +32,17 @@
   <script defer>
     const textArea = document.getElementById("pad");
 
-    textArea.addEventListener("keypress", (keyBoardEvent) => {
+
+    textArea.addEventListener("keydown", (keyBoardEvent) => {
+    // Check if TAB key was pressed.
+    if (keyBoardEvent.key == 'Tab') {
+      textArea.value += "    "; // Keep note that this will be changed according
+                                // to the preference of the user and how much spaces
+                                // they want. We might not use tabs because tabs
+                                // cause conflicts on different devices, but we'll see.
+  }
+
+      // Check for shortcut keys.
       switch (keyBoardEvent.key) {
         case "(":
         {
