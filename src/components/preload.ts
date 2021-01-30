@@ -29,25 +29,22 @@ const monokai_scrollbarHover = '#24271d';
 //#endregion
 
 ipcRenderer.on('create-titlebar', () => {
+    const window = remote.getCurrentWindow();
     // Set the Save and Open file shortcuts.
     remote.globalShortcut.register("CommandOrControl+O", () => {
-        var window = remote.getCurrentWindow();
-        if (window.isMinimizable() == false && window.isFocused() == true) openFile();
+        if (window.isMinimized() == false && window.isFocused() == true) openFile();
         else return;
     });
     remote.globalShortcut.register("CommandOrControl+S", () => {
-        var window = remote.getCurrentWindow();
         if (window.isMinimized() == false && window.isFocused() == true) saveFile();
         else return;
     });
     remote.globalShortcut.register('CommandOrControl+Shift+S', () => {
-        var window = remote.getCurrentWindow();
         if (window.isMinimized() == false && window.isFocused() == true) saveFile('Save As');
         else return;
     })
     // Set the rendering shortcut.
     remote.globalShortcut.register("CommandOrControl+Shift+R", () => {
-        var window = remote.getCurrentWindow();
         if (window.isMinimized() == false && window.isFocused() == true) renderFile();
         else return;
     });
