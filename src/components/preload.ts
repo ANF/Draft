@@ -6,6 +6,7 @@ import * as fs from 'fs';
 var titleBar: customTitlebar.Titlebar;
 var openFilePath: string = null;
 var fileIsOpen: boolean = false;
+const DraftVersion = '0.4.0';
 
 //#region Color Variables.
 const dark_TitlebarColor = '#1E1E1E';
@@ -98,7 +99,7 @@ ipcRenderer.on('create-titlebar', () => {
                         defaultId: 2,
                         title: 'Help - Draft',
                         message: 'Thank you for using Draft',
-                        detail: `This is Draft running v0.4.0 using\nElectron: v${process.versions.electron}\nNodeJS: v${process.versions.node}`,
+                        detail: `This is Draft running v${DraftVersion} using\nElectron: v${process.versions.electron}\nNodeJS: v${process.versions.node}`,
                         checkboxLabel: 'Get support',
                         checkboxChecked: false,
                         type: 'info',
