@@ -262,7 +262,7 @@ function renderFile() {
     let renderer: markdownRenderer;
     renderer = new markdownRenderer({
         breaks: true,
-        html: true,
+        html: false, // Disabled at the moment because of internal tags created at core.
         linkify: true,
         typographer: true,
         xhtmlOut: true,
