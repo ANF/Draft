@@ -11,14 +11,20 @@ var fileIsOpen: boolean = false;
 const dark_TitlebarColor = '#1E1E1E';
 const dark_TextAreaPadColor = '#242424';
 const dark_TextColor = '#f5f5f5';
+const dark_scrollbarColor = '#30302f';
+const dark_scrollbarHover = '#2e2e2d';
 
 const light_TitlebarColor = '#e6e6e6';
 const light_TextAreaPadColor = '#f5f5f5';
 const light_TextColor = '#0a0a0a';
+const light_scrollbarColor = '#dad7d7';
+const light_scrollbarHover = '#cac8c8';
 
 const monkai_TitlebarColor = '#272822';
 const monkai_TextAreaPadColor = '#2f3128';
 const monkai_TextColor = '#f6f8ef';
+const monkai_scrollbarColor = '#27291f';
+const monkai_scrollbarHover = '#24271d';
 //#endregion
 
 ipcRenderer.on('create-titlebar', () => {
