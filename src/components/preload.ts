@@ -259,6 +259,14 @@ function openFile() {
  * Renders markdown and shows the result in a new window.
  */
 function renderFile() {
+    // if (navigator.onLine) {
+    //     // Communicate with GitHub's API to render GFM (GitHub Flavored markdown)
+    // } else offlineRender();
+    offlineRender(); // For now, we'll just render it using local files.
+}
+
+function offlineRender() {
+    const directory = __dirname;
     let renderer: markdownRenderer;
     renderer = new markdownRenderer({
         breaks: true,
@@ -279,12 +287,15 @@ function renderFile() {
         }
     });
     rendererWindow.removeMenu();
-    var result = renderer.render((document.getElementById('pad') as HTMLInputElement).value);
-    // In final production, relative directories change causing a mess.
-    // This is why it writes somewhere else and reads elsewhere.
-    fs.writeFileSync('./resources/app/render.html', result, { encoding: 'utf-8' });    
-    rendererWindow.webContents.loadFile('./render.html');
-    rendererWindow.on('close', () => fs.unlink('./render.html', (err) => {}));
+    var result = '<html>\n\t<head>\n'
+        + '\t\t<link rel="stylesheet" href="../src/styles/lib/andyferra_github.css" />\n'
+        + '\t</head>\n\t<body>\n\t\t'
+        + renderer.render((document.getElementById('pad') as HTMLInputElement).value)
+        + '\n\t</body>\n</html>';
+    
+    fs.writeFileSync(directory + '/render.html', result, { encoding: 'utf-8' });    
+    rendererWindow.webContents.loadFile(directory + '/render.html');
+    rendererWindow.on('close', () => fs.unlink(directory + '/render.html', (err) => {}));
 }
 
 /**
