@@ -7,18 +7,18 @@
 <h3 align="center">Draft, a small project by ANF-Studios<br>A simple application that manages all your notes</h3>
 
 <p align="center">
-    <a href="https://github.com/ANF-Studios/Draft/blob/master/LICENSE">License</a> •
+    <a href="https://github.com/ANF/Draft/blob/master/LICENSE">License</a> •
     <a href="https://discord.gg/fKWpK7A">Discord Server</a> •
-    <a href="https://github.com/ANF-Studios/Draft/releases/latest">Download</a> •
-    <a href="https://github.com/ANF-Studios/Draft/blob/master/CHANGELOG.MD">Changelog</a>
+    <a href="https://github.com/ANF/Draft/releases/latest">Download</a> •
+    <a href="https://github.com/ANF/Draft/blob/master/CHANGELOG.MD">Changelog</a>
 </p>
 
 <h2>About</h2>
 <p>Draft was formerly known as ANFPad (and initially; List Manager). The development is active and the project is not abandoned.</p>
 
 <h2 align="center">Using it</h2>
-<p>You can grab the latest release of <a href="https://github.com/ANF-Studios/Draft">Draft</a> at the <a
-        href="https://github.com/ANF-Studios/Draft/releases/latest">releases</a> section and run the installer like any
+<p>You can grab the latest release of <a href="https://github.com/ANF/Draft">Draft</a> at the <a
+        href="https://github.com/ANF/Draft/releases/latest">releases</a> section and run the installer like any
     other Electron application.<br /><strong>Note:</strong> At the moment, the GUI version is only a pre-release, so you
     would have to use that if you feel eager for it.</p>
 
