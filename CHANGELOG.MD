@@ -1,5 +1,11 @@
 <h1 align="center">CHANGELOG</h1>
 
+## [0.4-b2](https://github.com/ANF/Draft/releases/tag/0.4.0-b1)
+- Added key shortcuts. That means that you won't need to type out `[` and `]` or `'` and `'` together. Keep note that there are more than these two shortcuts.
+- Improved colors.
+- Improved indent.
+- Seperated themes into seperate files.
+
 ## [0.4-b1](https://github.com/ANF/Draft/releases/tag/0.4.0-b1)
 - The first stable release
 - Updated easter egg
