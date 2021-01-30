@@ -139,7 +139,7 @@ ipcRenderer.on('create-titlebar', () => {
             }
         ]
     }));
-    console.log(process.argv);
+    //console.log(process.argv);
     titleBar = new customTitlebar.Titlebar({
         backgroundColor: customTitlebar.Color.fromHex('#1E1E1E'),
         icon: '../images/favicon.ico',
