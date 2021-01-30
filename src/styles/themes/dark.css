@@ -7,7 +7,7 @@ font-family: 'JetBrains Mono', monospace;*/
 body {
   margin: 0;
   padding: 0;
-  background-color: #242424;
+  background-color: #242424; 
 }
 
 html, body {
@@ -32,7 +32,7 @@ Sample code for changing the color.
 */
 textarea {
   font-family: 'Roboto', sans-serif;
-  width: 99.7%;
+  width: 99%;
   height: 93%;
   padding-left: 10px;
   position: fixed;

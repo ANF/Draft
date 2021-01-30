@@ -7,7 +7,7 @@ font-family: 'JetBrains Mono', monospace;*/
 body {
   margin: 0;
   padding: 0;
-  background-color: #242424;
+  background-color: #272822;
 }
 
 html, body {
@@ -32,7 +32,7 @@ Sample code for changing the color.
 */
 textarea {
   font-family: 'Roboto', sans-serif;
-  width: 99.7%;
+  width: 99%;
   height: 93%;
   padding-left: 10px;
   position: fixed;
@@ -42,8 +42,8 @@ textarea {
   outline: none; /*The entire outline code is to disable a yellow color that appears when clicking on it*/
   outline-color: transparent;
   outline-style: none;
-  color: #f5f5f5; /*This is the text color*/
-  background-color: #242424;
+  color: #f6f8ef; /*This is the text color*/
+  background-color: #272822;
   resize: none; /*This is to remove the resize option found on the bottom-right corner*/
   border: none; /*This removes the black outline from the border*/
 }
@@ -56,7 +56,7 @@ textarea {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px transparent; 
+  box-shadow: inset 0 0 5px transparent;
   border-radius: 0px;
   background: transparent;
   background-color: transparent;
@@ -64,12 +64,12 @@ textarea {
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #30302f; 
+  background: #1c2210;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #2e2e2d; 
+  background: #1e250e;
 }
 /*#endregion*/
