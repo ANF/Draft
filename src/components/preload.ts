@@ -297,6 +297,9 @@ function renderFile() {
  * it defaults back to the system prefered theme.
  */
 function updateTheme(themeName: string = 'System') {
+    // Get required values before anything else.
+    let themeManager = document.getElementById('theme');
+    let pad = document.getElementById('pad');
     switch (themeName) {
         case 'System':
             if (remote.nativeTheme.shouldUseDarkColors) updateTheme('Dark');
@@ -304,30 +307,24 @@ function updateTheme(themeName: string = 'System') {
             break;
 
         case 'Dark':
-            document.body.style.backgroundColor = dark_TextAreaPadColor;
-            remote.nativeTheme.themeSource = 'dark';
-            var pad = document.getElementById('pad');
-            pad.style.backgroundColor = dark_TextAreaPadColor;
-            pad.style.color = dark_TextColor;
+            themeManager.setAttribute('href', '../styles/themes/dark.css');
             titleBar.updateBackground(customTitlebar.Color.fromHex(dark_TitlebarColor));
+            pad.removeAttribute('style'); // *
+            remote.nativeTheme.themeSource = 'dark';
             break;
 
         case 'Light':
-            document.body.style.backgroundColor = light_TextAreaPadColor;
-            remote.nativeTheme.themeSource = 'light';
-            var pad = document.getElementById('pad');
-            pad.style.backgroundColor = light_TextAreaPadColor;
-            pad.style.color = light_TextColor;
+            document.getElementById('theme').setAttribute('href', '../styles/themes/light.css');
             titleBar.updateBackground(customTitlebar.Color.fromHex(light_TitlebarColor));
+            document.getElementById('pad').removeAttribute('style'); // *
+            remote.nativeTheme.themeSource = 'light';
             break;
 
         case 'Monkai':
-            document.body.style.backgroundColor = monkai_TextAreaPadColor;
-            remote.nativeTheme.themeSource = 'dark';
-            var pad = document.getElementById('pad');
-            pad.style.backgroundColor = monkai_TextAreaPadColor;
-            pad.style.color = monkai_TextColor;
+            themeManager.setAttribute('href', '../styles/themes/monkai.css');
             titleBar.updateBackground(customTitlebar.Color.fromHex(monkai_TitlebarColor));
+            pad.removeAttribute('style'); // *
+            remote.nativeTheme.themeSource = 'dark';
             break;
 
         default:
@@ -337,4 +334,7 @@ function updateTheme(themeName: string = 'System') {
     fs.writeFile('./theme.data',
         themeName,
         (err) => { if (err) { alert(err); throw (err); } });
+    // * This is because there is an attribute within the textArea
+    //   tag which has to be removed because the css file cannot
+    //   override it without removing that property/attribute.
 }
