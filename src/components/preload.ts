@@ -131,9 +131,9 @@ ipcRenderer.on('create-titlebar', () => {
                         click: () => updateTheme('Light')
                     },
                     {
-                        label: 'Monkai',
+                        label: 'Monokai',
                         type: 'radio',
-                        click: () => updateTheme('Monkai')
+                        click: () => updateTheme('Monokai')
                     }
                 ]
             }
@@ -316,8 +316,8 @@ function updateTheme(themeName: string = 'System') {
             remote.nativeTheme.themeSource = 'light';
             break;
 
-        case 'Monkai':
-            themeManager.setAttribute('href', '../styles/themes/monkai.css');
+        case 'Monokai':
+            themeManager.setAttribute('href', '../styles/themes/monokai.css');
             titleBar.updateBackground(customTitlebar.Color.fromHex(monkai_TitlebarColor));
             pad.removeAttribute('style'); // *
             remote.nativeTheme.themeSource = 'dark';
