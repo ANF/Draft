@@ -188,7 +188,7 @@ function saveFile(savePrompt: string = 'Save') {
             filters: [
                 {
                     name: 'Text Documents',
-                    extensions: ['pad', 'txt', 'md']
+                    extensions: ['pad', 'txt', 'md', '*']
                 },],
             properties: []
         }).then((file) => {
@@ -227,7 +227,7 @@ function openFile() {
         filters: [
             {
                 name: 'Text Documents',
-                extensions: ['pad', 'txt', 'md']
+                extensions: ['pad', 'txt', 'md', '*']
             },],
         properties: ['openFile']
     }).then((file: Electron.OpenDialogReturnValue) => {
