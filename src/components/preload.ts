@@ -325,7 +325,7 @@ function updateTheme(themeName: string = 'System') {
             break;
 
         default:
-            alert('Something went wrong on function applyTheme\nPlease report to the developer.');
+            alert('Something went wrong on function applyTheme\nPlease report to the developer.\ncodename: ' + themeName);
             throw new Error('Invalid theme name.');
     }
     localStorage.setItem('Theme', themeName);
