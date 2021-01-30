@@ -21,11 +21,11 @@ const light_TextColor = '#0a0a0a';
 const light_scrollbarColor = '#dad7d7';
 const light_scrollbarHover = '#cac8c8';
 
-const monkai_TitlebarColor = '#1e1f1c';
-const monkai_TextAreaPadColor = '#272822';
-const monkai_TextColor = '#f6f8ef';
-const monkai_scrollbarColor = '#27291f';
-const monkai_scrollbarHover = '#24271d';
+const monokai_TitlebarColor = '#1e1f1c';
+const monokai_TextAreaPadColor = '#272822';
+const monokai_TextColor = '#f6f8ef';
+const monokai_scrollbarColor = '#27291f';
+const monokai_scrollbarHover = '#24271d';
 //#endregion
 
 ipcRenderer.on('create-titlebar', () => {
@@ -316,9 +316,10 @@ function updateTheme(themeName: string = 'System') {
             remote.nativeTheme.themeSource = 'light';
             break;
 
+        case 'Monkai': // For backwards support, will be removed soon.
         case 'Monokai':
             themeManager.setAttribute('href', '../styles/themes/monokai.css');
-            titleBar.updateBackground(customTitlebar.Color.fromHex(monkai_TitlebarColor));
+            titleBar.updateBackground(customTitlebar.Color.fromHex(monokai_TitlebarColor));
             pad.removeAttribute('style'); // *
             remote.nativeTheme.themeSource = 'dark';
             break;
