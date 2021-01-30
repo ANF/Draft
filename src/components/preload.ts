@@ -51,6 +51,7 @@ ipcRenderer.on('create-titlebar', () => {
         if (window.isMinimized() == false && window.isFocused() == true) renderFile();
         else return;
     });
+    const theme = localStorage.getItem('Theme');
     const menu = new remote.Menu();
     menu.append(new remote.MenuItem({
         label: 'File',
@@ -139,18 +140,6 @@ ipcRenderer.on('create-titlebar', () => {
         ]
     }));
     console.log(process.argv);
-    let theme: string;
-    try {
-        if (fs.existsSync('./theme.data')) fs.readFile('./theme.data', (err, data) => {
-            if (err) { alert(err); throw (err); } theme = data.toString();
-        }); //theme = JSON.parse(fs.readFileSync('./config.json').toString());
-        else theme = null;
-    } catch {
-        fs.unlink('./theme.data', (err) => {
-            if (err) { alert(err); throw (err); }
-        });
-        alert("There was an error in parsing the settings, settings are reverted to default.");
-    }
     titleBar = new customTitlebar.Titlebar({
         backgroundColor: customTitlebar.Color.fromHex('#1E1E1E'),
         icon: '../images/favicon.ico',
@@ -338,9 +327,7 @@ function updateTheme(themeName: string = 'System') {
             alert('Something went wrong on function applyTheme\nPlease report to the developer.');
             throw new Error('Invalid theme name.');
     }
-    fs.writeFile('./theme.data',
-        themeName,
-        (err) => { if (err) { alert(err); throw (err); } });
+    localStorage.setItem('Theme', themeName);
     // * This is because there is an attribute within the textArea
     //   tag which has to be removed because the css file cannot
     //   override it without removing that property/attribute.
