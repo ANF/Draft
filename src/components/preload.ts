@@ -21,7 +21,7 @@ const light_scrollbarColor = '#dad7d7';
 const light_scrollbarHover = '#cac8c8';
 
 const monkai_TitlebarColor = '#1e1f1c';
-const monkai_TextAreaPadColor = '#2f3128';
+const monkai_TextAreaPadColor = '#272822';
 const monkai_TextColor = '#f6f8ef';
 const monkai_scrollbarColor = '#27291f';
 const monkai_scrollbarHover = '#24271d';
