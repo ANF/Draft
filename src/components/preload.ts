@@ -30,7 +30,7 @@ const monokai_scrollbarHover = '#24271d';
 
 ipcRenderer.on('create-titlebar', () => {
     const window = remote.getCurrentWindow();
-    // Set the Save and Open file shortcuts.
+    // Set the Save, Open and Close file shortcuts.
     remote.globalShortcut.register("CommandOrControl+O", () => {
         if (window.isMinimized() == false && window.isFocused() == true) openFile();
         else return;
@@ -42,7 +42,16 @@ ipcRenderer.on('create-titlebar', () => {
     remote.globalShortcut.register('CommandOrControl+Shift+S', () => {
         if (window.isMinimized() == false && window.isFocused() == true) saveFile('Save As');
         else return;
-    })
+    });
+    remote.globalShortcut.register('CommandOrControl+W', () => {
+        if (window.isMinimized() == false && window.isFocused() == true) closeFile();
+        else return;
+    });
+    // Set the close window shortcut.
+    remote.globalShortcut.register('Alt+F4', () => {
+        if (window.isMinimized() == false && window.isFocused() == true) process.exit(0);
+        else return;
+    });
     // Set the rendering shortcut.
     remote.globalShortcut.register("CommandOrControl+Shift+R", () => {
         if (window.isMinimized() == false && window.isFocused() == true) renderFile();
@@ -78,7 +87,13 @@ ipcRenderer.on('create-titlebar', () => {
                 type: 'separator'
             },
             {
+                label: 'Close File',
+                accelerator: 'CmdOrCtrl+W',
+                click: () => closeFile()
+            },
+            {
                 label: 'Exit',
+                accelerator: 'Alt+F4',
                 role: 'close'
             }
         ]
@@ -254,6 +269,14 @@ function openFile() {
         alert(err);
         throw err;
     });
+}
+
+function closeFile() {
+    if (fileIsOpen) {
+        (document.getElementById("pad") as HTMLInputElement).value = "";
+        titleBar.updateTitle('Draft');
+        fileIsOpen = false;
+    }
 }
 
 /**
