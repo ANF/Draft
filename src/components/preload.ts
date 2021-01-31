@@ -58,7 +58,7 @@ ipcRenderer.on('create-titlebar', () => {
         if (window.isMinimized() == false && window.isFocused() == true) renderFile();
         else return;
     });
-    const theme = localStorage.getItem('Theme');
+    theme = localStorage.getItem('Theme');
     const menu = new remote.Menu();
     menu.append(new remote.MenuItem({
         label: 'File',
