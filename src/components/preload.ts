@@ -1,5 +1,5 @@
 import customTitlebar = require('custom-electron-titlebar');
-import { ipcRenderer, shell, remote, IpcRendererEvent, app, } from 'electron';
+import { ipcRenderer, shell, remote, IpcRendererEvent, BrowserWindow, } from 'electron';
 import * as markdownRenderer from 'markdown-it';
 import * as fs from 'fs';
 
