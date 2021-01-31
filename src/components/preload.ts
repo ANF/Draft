@@ -374,6 +374,7 @@ function updateTheme(themeName: string = 'System') {
             alert('Something went wrong on function applyTheme\nPlease report to the developer.\ncodename: ' + themeName);
             throw new Error('Invalid theme name.');
     }
+    theme = themeName;
     localStorage.setItem('Theme', themeName);
     // * This is because there is an attribute within the textArea
     //   tag which has to be removed because the css file cannot
