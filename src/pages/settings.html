@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings - Draft</title>
+    <link rel="stylesheet" href="../styles/settings.css" />
+    <script>
+      /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+      // function openMenu() {
+      //     document.getElementById("dropdown-content").classList.toggle("show");
+      // }
+
+      // // Close the dropdown if the user clicks outside of it
+      // window.onclick = function (event) {
+      //     if (!event.target.matches('.dropbtn')) {
+      //         var dropdowns = document.getElementsByClassName("dropdown-content");
+      //         var i;
+      //         for (i = 0; i < dropdowns.length; i++) {
+      //             var openDropdown = dropdowns[i];
+      //             if (openDropdown.classList.contains('show')) {
+      //                 openDropdown.classList.remove('show');
+      //             }
+      //         }
+      //     }
+      // }
+
+      function switchTheme(themeName) {
+        alert(themeName);
+      }
+
+      function resetSettings() {
+        localStorage.clear();
+        alert(
+          "All the local data has been deleted and settings have been reverted to their default."
+        );
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="descriptions">
+      <div class="theme-desc">
+        <p>
+          This is where you can manage your theme settings and which theme the
+          notepad has to use
+        </p>
+      </div>
+      <div class="reset-desc">
+        <p>
+          This is the danger zone; if pressed, all your local settings and
+          configurations for this notepad will get deleted. This action is
+          irreversible, be careful when trying to hover over it as you will not
+          be warned after clicking it.
+        </p>
+      </div>
+    </div>
+    <div class="buttons">
+      <!-- <div class="dropdown">
+        <button onclick="openMenu()" class="dropbtn">Theme</button>
+        <div id="dropdown-content" class="dropdown-content">
+          <p onclick="switchTheme('System')">Follow System</p>
+          <p onclick="switchTheme('Dark')">Dark Theme</p>
+          <p onclick="switchTheme('Light')">Light Theme</p>
+          <p onclick="switchTheme('Monokai')">Monokai Theme</p>
+        </div>
+      </div> -->
+      <div class="theme-switch">
+        <button onclick="openMenu()" class="button theme-switcher">
+          Theme
+        </button>
+      </div>
+      <div class="reset-button">
+        <button onclick="resetSettings()" class="button reset">
+          Reset Settings
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

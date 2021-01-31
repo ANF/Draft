@@ -1,0 +1,122 @@
+/* .buttons {
+    border: none;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    margin-right: 20%;
+    margin-left: 70%;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  width: 128px;
+  height: 64px;
+  padding: 18px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+.dropdown {
+  position: relative;
+  margin-top: 25%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 10px;
+  min-height: 10px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  right: 0;
+  z-index: 1;
+}
+
+.dropdown-content p {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown p:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+
+.reset-button {
+    width: 128px;
+    height: 64px;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    margin-top: 5%;
+    margin-right: 20%;
+    margin-left: 70%;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    flex-direction: column;
+    background-color: red;
+} */
+
+.buttons {
+    margin-left: 70%;
+    margin-top: 0%;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button {
+    color: white;
+    border: none;
+    outline: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    margin: 10%;
+}
+
+.theme-switch {
+    
+}
+
+.theme-switcher {
+    background-color: #008CBA;
+}
+
+.reset-button {
+
+}
+
+.reset {
+    background-color: red;
+}
