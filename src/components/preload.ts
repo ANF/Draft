@@ -279,6 +279,9 @@ function openFile() {
     });
 }
 
+/**
+ * Closes a file if  open.
+ */
 function closeFile() {
     if (fileIsOpen) {
         (document.getElementById("pad") as HTMLInputElement).value = "";
