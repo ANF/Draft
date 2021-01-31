@@ -82,6 +82,10 @@
     background-color: red;
 } */
 
+body {
+    font-family: Helvetica,arial,sans-serif;
+}
+
 .buttons {
     margin-left: 70%;
     margin-top: 0%;
