@@ -349,14 +349,14 @@ function updateTheme(themeName: string = 'System') {
             break;
 
         case 'Dark':
-            themeManager.setAttribute('href', '../styles/themes/dark.css');
+            themeManager.setAttribute('href', '../styles/themes/main/dark.css');
             titleBar.updateBackground(customTitlebar.Color.fromHex(dark_TitlebarColor));
             pad.removeAttribute('style'); // *
             remote.nativeTheme.themeSource = 'dark';
             break;
 
         case 'Light':
-            document.getElementById('theme').setAttribute('href', '../styles/themes/light.css');
+            document.getElementById('theme').setAttribute('href', '../styles/themes/main/light.css');
             titleBar.updateBackground(customTitlebar.Color.fromHex(light_TitlebarColor));
             document.getElementById('pad').removeAttribute('style'); // *
             remote.nativeTheme.themeSource = 'light';
@@ -364,7 +364,7 @@ function updateTheme(themeName: string = 'System') {
 
         case 'Monkai': // For backwards support, will be removed soon.
         case 'Monokai':
-            themeManager.setAttribute('href', '../styles/themes/monokai.css');
+            themeManager.setAttribute('href', '../styles/themes/main/monokai.css');
             titleBar.updateBackground(customTitlebar.Color.fromHex(monokai_TitlebarColor));
             pad.removeAttribute('style'); // *
             remote.nativeTheme.themeSource = 'dark';
