@@ -380,3 +380,24 @@ function updateTheme(themeName: string = 'System') {
     //   tag which has to be removed because the css file cannot
     //   override it without removing that property/attribute.
 }
+function translateTitleBarThemeColor(themeName: string) {
+    switch (themeName) {
+        case 'System':
+            if (remote.nativeTheme.shouldUseDarkColors) return dark_TitlebarColor;
+            else return light_TitlebarColor;
+        case 'Light':
+            return light_TitlebarColor;
+        case 'Dark':
+            return dark_TitlebarColor;
+        case 'Monokai':
+            return monokai_TitlebarColor;
+        default:
+            alert('Something went wrong while translating color.\nPlease report to the developer.\ncodename: ' + themeName);
+            throw new Error('Invalid theme name.');
+    }
+}
+
+function openSettings(menuItem: Electron.MenuItem, currentTheme: string) {
+    const settingsWindow = initializeWindow(currentTheme);
+}
+
