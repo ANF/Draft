@@ -1,3 +1,10 @@
+// Some plans to control markdown rendering:
+// https://developer.github.com/v3/markdown/
+// https://gist.github.com/tuzz/3331384
+// https://gist.github.com/andyferra/2554919
+// Also reread the chat (if you're in the Myst discord server):
+// https://discord.com/channels/298510542535000065/448126936804229120/799727560695087124
+
 import { app, BrowserWindow, Menu, MenuItem, globalShortcut } from 'electron';
 import * as fs from 'fs';
 import * as path from 'path';
