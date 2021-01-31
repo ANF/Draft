@@ -6,6 +6,7 @@ import * as fs from 'fs';
 var titleBar: customTitlebar.Titlebar;
 var openFilePath: string = null;
 var fileIsOpen: boolean = false;
+var theme: string;
 const DraftVersion = '0.4.0';
 
 //#region Color Variables.
