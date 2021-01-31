@@ -380,6 +380,7 @@ function updateTheme(themeName: string = 'System') {
     //   tag which has to be removed because the css file cannot
     //   override it without removing that property/attribute.
 }
+
 function translateTitleBarThemeColor(themeName: string) {
     switch (themeName) {
         case 'System':
@@ -401,3 +402,32 @@ function openSettings(menuItem: Electron.MenuItem, currentTheme: string) {
     const settingsWindow = initializeWindow(currentTheme);
 }
 
+function initializeWindow(currentTheme: string): BrowserWindow {
+    const settingsWindow: BrowserWindow = new remote.BrowserWindow({
+        width: 640,
+        height: 360,
+        minWidth: 640,
+        minHeight: 360,
+        titleBarStyle: 'hidden',
+        icon: './src/images/settings.png',
+        webPreferences: {
+          nodeIntegration: true,
+          enableRemoteModule: true,
+          textAreasAreResizable: false,
+          disableDialogs: true,
+          contextIsolation: true,
+          //devTools: false,
+        }
+    });
+    // const settingsMenu = new remote.Menu();
+    // settingsMenu.append(new remote.MenuItem({
+    //     label: 'Hello World!'
+    // }));
+    // settingsWindow.setMenu(settingsMenu);
+
+    settingsWindow.removeMenu();
+    settingsWindow.loadFile('./src/pages/settings.html');
+    settingsWindow.show();
+    settingsWindow.webContents.openDevTools();
+    return settingsWindow;
+}
