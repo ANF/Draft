@@ -153,6 +153,13 @@ ipcRenderer.on('create-titlebar', () => {
                         click: () => updateTheme('Monokai')
                     }
                 ]
+            },
+            {
+                label: 'Settings',
+                type: 'normal',
+                click: (menuItem, appWindow, keyboardEvent) => {
+                    openSettings(menuItem, theme);
+                }
             }
         ]
     }));
