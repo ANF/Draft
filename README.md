@@ -1,5 +1,5 @@
 <h1 align="center" style="position: relative;">
-    <a href="https://github.com/ANF-Studios/Draft"><img width="200" style="border-radius: 50%;"
+    <a href="https://github.com/ANF/Draft"><img width="200" style="border-radius: 50%;"
             src="./src/images/display.png" /></a><br>
     Draft
 </h1>
