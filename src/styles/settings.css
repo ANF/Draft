@@ -83,12 +83,37 @@
 } */
 
 body {
-    font-family: Helvetica,arial,sans-serif;
+  font-family: Helvetica,arial,sans-serif;
+  background-color: #1b1818;
+}
+
+
+.descriptions {
+  margin-left: 5%;
+  margin-top: 10%;
+  width: 550px;
+  display: flex;
+  flex-direction: column;
+}
+
+.desc {
+  margin-left: 5%;
+  margin-top: 10%;
+  width: 550px;
+  display: flex;
+  flex-direction: column;
+  color: #ffea00;
+}
+
+@media (min-width: 780px) {
+  .descriptions {
+    width: 450px;
+  }
 }
 
 .buttons {
     margin-left: 70%;
-    margin-top: 0%;
+    margin-top: -12%;
     border: none;
     color: white;
     text-align: center;
@@ -106,7 +131,7 @@ body {
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    margin: 10%;
+    margin: 5%;
 }
 
 .theme-switch {

@@ -32,7 +32,7 @@ async function createWindow() {
       textAreasAreResizable: false,
       disableDialogs: false,
       preload: path.join(__dirname, 'preload.js'),
-      devTools: false,
+      //devTools: false,
     }
   });
   
@@ -90,7 +90,7 @@ async function createWindow() {
   mainWindow.show();
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 };
 
 //#region Event Handlers

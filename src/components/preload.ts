@@ -104,11 +104,11 @@ ipcRenderer.on('create-titlebar', () => {
         role: 'editMenu'
     }));
     menu.append(new remote.MenuItem({
-        label: 'Help',
+        label: 'Other',
         submenu: [
             {
                 label: 'About',
-                click: () => {
+                click: (menuItem, appWindow, keyboardEvent) => {
                     const options = {
                         defaultId: 2,
                         title: 'Help - Draft',
@@ -125,7 +125,7 @@ ipcRenderer.on('create-titlebar', () => {
                 },
             },
             {
-                label: 'Themes',
+                label: 'Preferences',
                 type: 'submenu',
                 submenu: [
                     {
@@ -404,9 +404,9 @@ function openSettings(menuItem: Electron.MenuItem, currentTheme: string) {
 
 function initializeWindow(currentTheme: string): BrowserWindow {
     const settingsWindow: BrowserWindow = new remote.BrowserWindow({
-        width: 640,
+        width: 780,
         height: 360,
-        minWidth: 640,
+        minWidth: 780,
         minHeight: 360,
         titleBarStyle: 'hidden',
         icon: './src/images/settings.png',
