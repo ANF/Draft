@@ -6,6 +6,13 @@
 
 <h3 align="center">Draft, a small project by ANF-Studios<br>A simple application that manages all your notes</h3>
 
+<br />
+<p align="center">
+    <a href="https://github.com/ANF/Draft/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/ANF/Draft?color=0080c6&style=for-the-badge"></a>
+    <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/ANF/Draft?color=0080c6&style=for-the-badge">
+    <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/ANF/Draft?color=0080c6&style=for-the-badge">
+</p>
+
 <p align="center">
     <a href="https://github.com/ANF/Draft/blob/master/LICENSE">License</a> •
     <a href="https://discord.gg/fKWpK7A">Discord Server</a> •
