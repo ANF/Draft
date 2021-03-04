@@ -42,6 +42,8 @@
     Now save the following code in a <code>ps1</code> (such as <code>run_anfpad.ps1</code>) file and run it with
     PowerShell.
 </p>
+<p>Now if you're wondering why PowerShell, that's because PowerShell Core is cross platform which means it'll work on all Windows, macOS and Linux which makes life easier.</p>
+
 
 ```ps1
 $desktop = [Environment]::GetFolderPath("Desktop");
