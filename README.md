@@ -9,7 +9,7 @@
 <br />
 <p align="center">
     <a href="https://github.com/ANF/Draft/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/ANF/Draft?color=0080c6&style=for-the-badge"></a>
-    <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/ANF/Draft?color=0080c6&style=for-the-badge">
+    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/ANF/Draft/ElectronJS%20Build?style=for-the-badge">
     <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/ANF/Draft?color=0080c6&style=for-the-badge">
 </p>
 
@@ -42,6 +42,8 @@
     Now save the following code in a <code>ps1</code> (such as <code>run_anfpad.ps1</code>) file and run it with
     PowerShell.
 </p>
+<p>Now if you're wondering why PowerShell, that's because PowerShell Core is cross platform which means it'll work on all Windows, macOS and Linux which makes life easier.</p>
+
 
 ```ps1
 $desktop = [Environment]::GetFolderPath("Desktop");
