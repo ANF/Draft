@@ -9,5 +9,5 @@ jobs:
     - uses: actions/first-interaction@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: 'Hello there!\nTest'
-        pr-message: 'Message that will be displayed on users first pull request'
+        issue-message: 'Hello there!\nI see that you are new here. Please make sure to follow all the guidelines and provide as much detail as necessary.'
+        pr-message: 'Hello there!\nI see that you are new here. Please make sure to commit with detail instead of just "Update X" and specify everything including how you tested it. Also mention the issue it is suppose to close.'
