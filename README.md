@@ -8,6 +8,7 @@
 
 <br />
 <p align="center">
+    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/ANF/Draft/ElectronJS%20Build?style=for-the-badge">
     <a href="https://github.com/ANF/Draft/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/ANF/Draft?color=0080c6&style=for-the-badge"></a>
     <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/ANF/Draft?color=0080c6&style=for-the-badge">
     <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/ANF/Draft?color=0080c6&style=for-the-badge">
