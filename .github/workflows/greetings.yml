@@ -10,4 +10,4 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: 'Hello there!\nI see that you are new here. Please make sure to follow all the guidelines and provide as much detail as necessary.'
-        pr-message: 'Hello there!\nI see that you are new here. Please make sure to commit with detail instead of just "Update X" and specify everything including how you tested it. Also mention the issue it is suppose to close.'
+        pr-message: 'Hello there! I see that you are new here. Please make sure to commit with detail instead of just "Update X" and specify everything including how you tested it. Also mention the issue it is suppose to close.'
